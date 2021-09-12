@@ -1,0 +1,15 @@
+#schoolSummaryRoot {
+  margin: 2vh;
+  min-width: 85vw;
+  padding: 2vh;
+  height: 80vh;
+  border: 2px dashed blue;
+}
+
+#name {
+  text-align: center;
+}
+
+#description {
+  text-align: justify;
+}
