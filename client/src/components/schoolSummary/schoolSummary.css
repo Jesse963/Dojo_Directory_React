@@ -2,8 +2,14 @@
   margin: 3vh;
   min-width: 90vw;
   padding: 2vh;
-  height: 80vh;
-  border: 2px dashed blue;
+  height: 85vh;
+  border: 1px solid black;
+  box-shadow: 10px 10px 8px #888888;
+  cursor: pointer;
+}
+#schoolSummaryRoot:active {
+  transform: translate(4px, 4px);
+  box-shadow: 6px 6px 8px #888888;
 }
 
 #name {
@@ -12,4 +18,45 @@
 
 #description {
   text-align: justify;
+  padding-bottom: 2vh;
+  margin-bottom: 2vh;
+  border-bottom: 2px solid black;
+}
+
+#schoolDetails {
+  height: 25vh;
+}
+
+#schoolDetails h4 {
+  text-align: center;
+}
+
+.contact.element {
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 600px) {
+  #schoolSummaryRoot {
+    height: auto;
+  }
+
+  .school.summary.content {
+    height: auto;
+    display: flex;
+  }
+
+  #description {
+    text-align: justify;
+    margin-bottom: 2vh;
+    width: 70vw;
+    margin-right: 2vw;
+    border: none;
+    height: auto;
+  }
+
+  #schoolDetails {
+    height: auto;
+    width: 21vw;
+    text-align: right;
+  }
 }
