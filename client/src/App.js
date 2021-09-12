@@ -3,6 +3,15 @@ import "./App.css";
 import SummaryCardContainer from "./components/summaryCardContainer/summaryCardContainer";
 import NavBar from "./components/navbar/navbar";
 
+// const getSchools = async () => {
+//   console.log("Entered getSchools");
+//   const rawSchools = await fetch("/routes/api/getAll");
+//   console.log(`Raw Schools: ${rawSchools}`);
+
+//   let schools = await rawSchools.json();
+//   console.log(`Parsed Schools: ${schools.result}`);
+// };
+
 const testDojos = [
   {
     _id: "606e38e7726a66549c3f732c",
@@ -32,6 +41,8 @@ const testDojos = [
 ];
 
 function App() {
+  // const schools = await getSchools();
+  // console.log(schools);
   return (
     <React.Fragment>
       <NavBar />

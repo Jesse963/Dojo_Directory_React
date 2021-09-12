@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-// const { ping } = require("./mapbox");
+const { retrieveAllDBEntries } = require("../controllers/dojosController");
 
-// router.get("/ping", ping);
+router.get("/getAll", retrieveAllDBEntries);
 
 module.exports = router;
