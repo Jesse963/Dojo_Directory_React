@@ -12,6 +12,7 @@ class SchoolSummary extends React.Component {
       >
         <h2 id="name">{this.props.dojo.name || "no ID"}</h2>
         <div id="description">{this.props.dojo.description}</div>
+        <button className="btn btn-lg btn-primary">test</button>
       </div>
     );
   }
