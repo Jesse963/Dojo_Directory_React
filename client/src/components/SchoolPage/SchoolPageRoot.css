@@ -10,3 +10,9 @@
   margin-bottom: 2vh;
   margin-top: 1vh;
 }
+
+@media only screen and (min-width: 600px) {
+  #schoolPageMainContainer {
+    display: flex;
+  }
+}

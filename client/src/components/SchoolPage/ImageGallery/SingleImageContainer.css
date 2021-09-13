@@ -1,7 +1,18 @@
 #singleImageContainer {
   background-image: url("../../../logo512.png");
-  background-size: 100vw;
   min-width: 100vw;
   height: 100vw;
   margin-right: 2vh;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin-bottom: 2vh;
+}
+
+@media only screen and (min-width: 600px) {
+  #singleImageContainer {
+    min-width: 40vw;
+    width: 40vw;
+    min-height: 40vw;
+    border: 2px dashed blueviolet;
+  }
 }

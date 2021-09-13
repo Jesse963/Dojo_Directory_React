@@ -1,0 +1,8 @@
+@media only screen and (min-width: 600px) {
+  #mainContent {
+    text-align: justify;
+    max-width: 40vw;
+    margin-left: 5vw;
+    margin-top: 5vh;
+  }
+}
