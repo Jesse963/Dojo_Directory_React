@@ -1,0 +1,8 @@
+#imageGalleryRoot {
+  border: 2px solid blue;
+  width: 100vw;
+  height: 100vw;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+}
