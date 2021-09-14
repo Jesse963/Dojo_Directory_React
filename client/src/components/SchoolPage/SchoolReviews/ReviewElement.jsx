@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import "./SchoolPageContent.css";
-import ReviewContainer from "../SchoolReviews/ReviewContainer";
+import "./ReviewElement.css";
 
-class SchoolPageContent extends React.Component {
+class ReviewElement extends React.Component {
   render() {
     return (
-      <div id="mainContent">
-        <h2>About Us |</h2>
-        <p>
+      <div id="reviewRoot">
+        <p id="reviewContent">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -16,14 +14,16 @@ class SchoolPageContent extends React.Component {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-        <h2>Contact |</h2>
-        <p>XXXX XXX XXX</p>
-        <p> fake_email@gmail.com</p>
-        <p>101 Some Street, Sydney, 2000</p>
-        <ReviewContainer />
+        <div id="reviewFooter">
+          <h5 id="author">Jesse Jenkins</h5>
+        </div>
+        <div id="reviewFooter">
+          <h6>(Student)</h6>
+          <h6 id="date">14/09/2021</h6>
+        </div>
       </div>
     );
   }
 }
 
-export default SchoolPageContent;
+export default ReviewElement;

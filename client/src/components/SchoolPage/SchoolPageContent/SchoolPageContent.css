@@ -1,3 +1,7 @@
+#mainContent {
+  margin: 2vh;
+  text-align: justify;
+}
 @media only screen and (min-width: 600px) {
   #mainContent {
     text-align: justify;
