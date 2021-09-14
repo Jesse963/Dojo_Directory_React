@@ -6,6 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
+  background-color: white !important;
+  background-image: url("./backgroundImage.jpg");
+  background-blend-mode: difference;
 }
 
 code {

@@ -7,6 +7,7 @@ class SchoolSummary extends React.Component {
     return (
       <div
         id="schoolSummaryRoot"
+        className={`suggestion rank${this.props.id}`}
         onClick={() => {
           console.log(`${dojo.name} was clicked`);
         }}

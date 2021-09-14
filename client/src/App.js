@@ -3,6 +3,7 @@ import "./App.css";
 import SummaryCardContainer from "./components/summaryCardContainer/summaryCardContainer";
 import NavBar from "./components/navbar/navbar";
 import SchoolPageRoot from "./components/SchoolPage/SchoolPageRoot";
+import StartPage from "./components/StartPage/StartPage";
 
 // const getSchools = async () => {
 //   console.log("Entered getSchools");
@@ -47,7 +48,8 @@ function App() {
   return (
     <React.Fragment>
       <NavBar />
-      <SchoolPageRoot />
+      <StartPage />
+      {/* <SchoolPageRoot /> */}
       {/* <SummaryCardContainer schools={testDojos} /> */}
     </React.Fragment>
   );

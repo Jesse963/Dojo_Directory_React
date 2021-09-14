@@ -4,12 +4,20 @@
   padding: 2vh;
   height: 85vh;
   border: 1px solid black;
-  box-shadow: 10px 10px 8px #888888;
+  box-shadow: 5px 5px 4px #888888;
   cursor: pointer;
+  border-radius: 3vh;
+  background-color: white;
 }
+#schoolSummaryRoot:hover {
+  box-shadow: 10px 10px 8px #888888;
+  border-color: blue !important;
+}
+
 #schoolSummaryRoot:active {
   transform: translate(4px, 4px);
-  box-shadow: 6px 6px 8px #888888;
+  box-shadow: none;
+  /* box-shadow: 5px 5px 4px #888888; */
 }
 
 #name {
@@ -33,6 +41,17 @@
 
 .contact.element {
   font-weight: 600;
+}
+
+.suggestion.rank0 {
+  border: 8px solid navy !important;
+}
+
+.suggestion.rank1 {
+  border: 5px solid navy !important;
+}
+.suggestion.rank2 {
+  border: 2px solid navy !important;
 }
 
 @media only screen and (min-width: 600px) {
