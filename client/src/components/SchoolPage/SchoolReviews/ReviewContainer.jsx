@@ -38,7 +38,7 @@ class ReviewContainer extends React.Component {
         <div id="reviewContent">{/* {this.state.reviews.mas */}</div>
         {this.state.reviews.map((review, i) => {
           console.log(review || "");
-          return <ReviewElement review={review} id={i} />;
+          return <ReviewElement review={review} key={i} />;
         })}
         <button
           className="btn btn-primary"

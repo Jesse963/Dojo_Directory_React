@@ -25,7 +25,6 @@ class ReviewElement extends React.Component {
       this.props.review;
     return (
       <div id="reviewRoot">
-        <p id="reviewContent">{review}</p>
         <div id="reviewFooter">
           <h5 id="author">{first_name + " " + last_name}</h5>
         </div>
@@ -33,6 +32,7 @@ class ReviewElement extends React.Component {
           <h6>(Student)</h6>
           <h6 id="date">{this.formatDate(createdAt)}</h6>
         </div>
+        <p id="reviewContent">{review}</p>
       </div>
     );
   }

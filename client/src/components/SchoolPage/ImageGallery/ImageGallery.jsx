@@ -9,7 +9,7 @@ class ImageGallery extends React.Component {
     return (
       <div id="imageGalleryRoot">
         {emptyArray.map((element, i) => {
-          return <SingleImageContainer />;
+          return <SingleImageContainer key={i} />;
         })}
       </div>
     );

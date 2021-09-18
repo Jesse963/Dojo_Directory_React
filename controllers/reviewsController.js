@@ -21,15 +21,23 @@ exports.submitReview = async (req, res) => {
   } catch (error) {
     return res.status(400).json({
       error: true,
-      message: `Error adding new student to database: ${error}`,
+      message: `Error adding new review to database: ${error}`,
     });
   }
   return res.location("/").status(302).json({ success: "True" });
 };
 
 exports.getReviews = async (req, res) => {
-  const school_id = "606e38e7726a66549c3f732c";
-  console.log("Getting reviews");
-  const reviews = await Review.find({ school_id: school_id });
+  const school_id = req.query.school_id;
+  console.log("Getting reviews for ", req.query.school_id);
+  let reviews;
+  try {
+    reviews = await Review.find({ school_id: school_id });
+  } catch (error) {
+    return res.status(400).json({
+      error: true,
+      message: `Error Retrieving reviews from database: ${error}`,
+    });
+  }
   return res.json({ reviews: reviews });
 };
