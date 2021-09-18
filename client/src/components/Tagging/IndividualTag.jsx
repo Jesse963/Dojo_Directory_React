@@ -2,12 +2,11 @@ import React, { Component } from "react";
 
 class IndividualTag extends React.Component {
   clickHandler() {
-    console.log("clicked");
+    console.log(`clicked ${this.props.tag}`);
     const button = document.getElementById("tagButton" + this.props.id);
     button.classList.toggle("btn-primary");
     button.classList.toggle("selected");
     button.classList.toggle("btn-outline-primary");
-    this.props.clickHandler();
   }
 
   render() {

@@ -25,10 +25,6 @@ const tags = [
   "Free Trial Available",
 ];
 class TagContainer extends React.Component {
-  clickHandler() {
-    console.log("hello");
-  }
-
   resetTags() {
     const tags = document.querySelectorAll(".tag.button");
     tags.forEach((tag) => {
@@ -76,14 +72,7 @@ class TagContainer extends React.Component {
         <h1>Select Some Tags</h1>
         <div className="tags">
           {tags.map((tag, i) => {
-            return (
-              <IndividualTag
-                clickHandler={() => this.clickHandler()}
-                id={i}
-                key={i}
-                tag={tag}
-              />
-            );
+            return <IndividualTag id={i} key={i} tag={tag} />;
           })}
         </div>
         <div className="tags footer">
