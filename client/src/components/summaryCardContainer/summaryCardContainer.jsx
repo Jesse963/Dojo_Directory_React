@@ -12,9 +12,9 @@ class SummaryCardContainer extends React.Component {
           console.log(dojo.name);
           return <SchoolSummary dojo={dojo} key={i} />;
         })} */}
-        {emptyArray.map((dojo, i) => {
+        {this.props.schools.map((dojo, i) => {
           console.log(this.props, dojo);
-          return <SchoolSummary dojo={this.props.schools[0]} key={i} id={i} />;
+          return <SchoolSummary dojo={dojo} key={i} id={i} />;
         })}
       </div>
     );

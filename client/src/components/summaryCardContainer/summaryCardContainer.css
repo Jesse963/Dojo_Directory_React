@@ -1,6 +1,7 @@
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 0px;
-}
+} */
+
 #cardContainer {
   display: flex;
   overflow-x: scroll;

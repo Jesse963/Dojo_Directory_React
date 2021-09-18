@@ -2,24 +2,36 @@ import React, { Component } from "react";
 import "./ReviewElement.css";
 
 class ReviewElement extends React.Component {
+  formatDate(dateTimeObject) {
+    const date = new Date(dateTimeObject);
+    const d = [
+      date.getDate().toString(),
+      (date.getMonth() + 1).toString(),
+      date.getYear().toString(),
+    ];
+    if (d[1].length == 1) {
+      console.log(d[1]);
+      d[1] = "0" + d[1];
+    }
+    if (d[2].length > 2) {
+      d[2] = d[2].slice(-2);
+    }
+    console.log(date);
+    return d.join("/");
+  }
+
   render() {
+    const { first_name, last_name, email, createdAt, review } =
+      this.props.review;
     return (
       <div id="reviewRoot">
-        <p id="reviewContent">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <p id="reviewContent">{review}</p>
         <div id="reviewFooter">
-          <h5 id="author">Jesse Jenkins</h5>
+          <h5 id="author">{first_name + " " + last_name}</h5>
         </div>
         <div id="reviewFooter">
           <h6>(Student)</h6>
-          <h6 id="date">14/09/2021</h6>
+          <h6 id="date">{this.formatDate(createdAt)}</h6>
         </div>
       </div>
     );

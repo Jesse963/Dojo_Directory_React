@@ -1,18 +1,21 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import "./App.css";
 import SummaryCardContainer from "./components/summaryCardContainer/summaryCardContainer";
 import NavBar from "./components/navbar/navbar";
 import SchoolPageRoot from "./components/SchoolPage/SchoolPageRoot";
 import StartPage from "./components/StartPage/StartPage";
 
-// const getSchools = async () => {
-//   console.log("Entered getSchools");
-//   const rawSchools = await fetch("/routes/api/getAll");
-//   console.log(`Raw Schools: ${rawSchools}`);
-
-//   let schools = await rawSchools.json();
-//   console.log(`Parsed Schools: ${schools.result}`);
-// };
+function listAllSchools(schools) {
+  console.log(schools.schools);
+  ReactDOM.render(
+    <React.Fragment>
+      <NavBar />
+      <SummaryCardContainer schools={schools.schools} />
+    </React.Fragment>,
+    document.querySelector("#root")
+  );
+}
 
 const testDojos = [
   {
@@ -45,10 +48,12 @@ const testDojos = [
 function App() {
   // const schools = await getSchools();
   // console.log(schools);
+
   return (
     <React.Fragment>
       <NavBar />
-      <StartPage />
+
+      <StartPage listAllSchools={listAllSchools} />
       {/* <SchoolPageRoot /> */}
       {/* <SummaryCardContainer schools={testDojos} /> */}
     </React.Fragment>

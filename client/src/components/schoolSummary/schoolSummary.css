@@ -11,7 +11,7 @@
 }
 #schoolSummaryRoot:hover {
   box-shadow: 10px 10px 8px #888888;
-  border-color: blue !important;
+  border-color: chartreuse !important;
 }
 
 #schoolSummaryRoot:active {
@@ -44,14 +44,14 @@
 }
 
 .suggestion.rank0 {
-  border: 8px solid navy !important;
+  border: 8px solid lightgreen !important;
 }
 
 .suggestion.rank1 {
-  border: 5px solid navy !important;
+  border: 5px solid lightgreen !important;
 }
 .suggestion.rank2 {
-  border: 2px solid navy !important;
+  border: 2px solid lightgreen !important;
 }
 
 @media only screen and (min-width: 600px) {

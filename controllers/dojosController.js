@@ -4,6 +4,6 @@ require("dotenv").config();
 
 exports.retrieveAllDBEntries = async (req, res) => {
   const schools = await Dojo.find({});
-  console.log(schools);
-  res.send(schools);
+  // console.log(schools);
+  return res.json({ schools: schools });
 };

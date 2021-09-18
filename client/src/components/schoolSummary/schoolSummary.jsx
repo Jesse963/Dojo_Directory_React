@@ -1,7 +1,20 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import "./schoolSummary.css";
+import SchoolPageRoot from "../SchoolPage/SchoolPageRoot";
+import NavBar from "../navbar/navbar";
 
 class SchoolSummary extends React.Component {
+  schoolClickHandler() {
+    console.log(`${this.props.dojo.name} was clicked`);
+    ReactDOM.render(
+      <React.Fragment>
+        <NavBar />
+        <SchoolPageRoot dojo={this.props.dojo} />
+      </React.Fragment>,
+      document.querySelector("#root")
+    );
+  }
   render() {
     const dojo = this.props.dojo;
     return (
@@ -9,7 +22,7 @@ class SchoolSummary extends React.Component {
         id="schoolSummaryRoot"
         className={`suggestion rank${this.props.id}`}
         onClick={() => {
-          console.log(`${dojo.name} was clicked`);
+          this.schoolClickHandler();
         }}
       >
         <h2 id="name">{dojo.name || "no ID"}</h2>

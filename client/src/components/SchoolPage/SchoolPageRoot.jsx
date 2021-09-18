@@ -7,10 +7,10 @@ class SchoolPageRoot extends React.Component {
   render() {
     return (
       <div id="schoolPageRoot">
-        <h1>{this.props.dojo || "Mushin Goju Ryu Karate Academy"}</h1>
+        <h1>{this.props.dojo.name || "Mushin Goju Ryu Karate Academy"}</h1>
         <div id="schoolPageMainContainer">
           <ImageGallery />
-          <SchoolPageContent />
+          <SchoolPageContent dojo={this.props.dojo} />
         </div>
       </div>
     );

@@ -2,6 +2,11 @@
   margin: 2vh;
   text-align: justify;
 }
+#mainContent p:not(#about, #reviewContent) {
+  overflow: auto;
+  max-height: 10vw;
+}
+
 @media only screen and (min-width: 600px) {
   #mainContent {
     text-align: justify;
