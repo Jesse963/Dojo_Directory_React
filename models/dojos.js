@@ -16,12 +16,10 @@ let DojoSchema = new Schema(
     },
     address: {
       type: String,
-      required: true,
       unique: true,
     },
     postcode: {
       type: Number,
-      required: true,
     },
     state: {
       type: String,

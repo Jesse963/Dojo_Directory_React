@@ -6,6 +6,8 @@ import NavBar from "./components/navbar/navbar";
 import SchoolPageRoot from "./components/SchoolPage/SchoolPageRoot";
 import StartPage from "./components/StartPage/StartPage";
 import TagContainer from "./components/Tagging/TagContainer";
+import NewSchoolForm from "./components/NewSchoolForm/NewSchoolForm";
+
 function listAllSchools(schools) {
   console.log(schools.schools);
   ReactDOM.render(
@@ -22,10 +24,11 @@ function App() {
     <React.Fragment>
       <NavBar />
 
-      <StartPage listAllSchools={listAllSchools} />
+      {/* <StartPage listAllSchools={listAllSchools} /> */}
       {/* <SchoolPag5eRoot /> */}
       {/* <SummaryCardContainer schools={testDojos} /> */}
-      <TagContainer />
+      {/* <TagContainer /> */}
+      <NewSchoolForm />
     </React.Fragment>
   );
 }

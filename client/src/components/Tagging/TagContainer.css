@@ -1,7 +1,18 @@
 #tagsContainer {
-  margin: 2vh;
   text-align: center;
-  width: 50vw;
   padding: 2vh;
-  border: 2px black solid;
+}
+
+@media only screen and (min-width: 600px) {
+  #tagsContainer {
+    margin: 2vh;
+    margin-left: 25vw;
+    margin-top: 25vh;
+    text-align: center;
+    width: 50vw;
+    padding: 2vh;
+    border: 2px black solid;
+    box-shadow: 10px 10px 8px #888888;
+    overflow: auto;
+  }
 }

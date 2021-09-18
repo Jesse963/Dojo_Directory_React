@@ -5,6 +5,7 @@ class IndividualTag extends React.Component {
     console.log("clicked");
     const button = document.getElementById("tagButton" + this.props.id);
     button.classList.toggle("btn-primary");
+    button.classList.toggle("selected");
     button.classList.toggle("btn-outline-primary");
     this.props.clickHandler();
   }
@@ -13,7 +14,7 @@ class IndividualTag extends React.Component {
     return (
       <button
         id={"tagButton" + this.props.id}
-        className="btn btn-outline-primary m-1"
+        className="tag button btn btn-outline-primary btn-lg m-1"
         onClick={() => this.clickHandler()}
       >
         {this.props.tag}

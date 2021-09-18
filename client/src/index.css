@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+
   background-color: white !important;
   /* background-image: url("./backgroundImage.jpg");
   background-blend-mode: difference; */
@@ -33,4 +33,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+@media only screen and (min-width: 600px) {
+  body {
+    overflow: hidden;
+  }
 }
