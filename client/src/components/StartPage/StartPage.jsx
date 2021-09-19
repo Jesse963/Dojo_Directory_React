@@ -21,7 +21,7 @@ class StartPage extends React.Component {
     ReactDOM.render(
       <React.Fragment>
         <NavBar />
-        <TagContainer />
+        <TagContainer submissionMethod="comparison" />
       </React.Fragment>,
       document.getElementById("root")
     );

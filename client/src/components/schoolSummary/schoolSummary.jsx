@@ -29,6 +29,7 @@ class SchoolSummary extends React.Component {
         <div className="school summary content">
           <div id="description">{dojo.description}</div>
           <div id="schoolDetails">
+            <h3 id="schoolScore">School Score: {this.props.score}</h3>
             <p className="contact element">{`Contact | ${dojo.sensei}`}</p>
             <p className="contact element">{`Phone | ${
               dojo.phone || "0415 927 738"

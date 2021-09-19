@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SchoolSummary from "../schoolSummary/schoolSummary";
 import "./summaryCardContainer.css";
 
-const emptyArray = ["", "", "", "", "", "", "", "", "", ""];
+const emptyArray = [];
 
 class SummaryCardContainer extends React.Component {
   render() {
@@ -14,7 +14,14 @@ class SummaryCardContainer extends React.Component {
         })} */}
         {this.props.schools.map((dojo, i) => {
           console.log(this.props, dojo);
-          return <SchoolSummary dojo={dojo} key={i} id={i} />;
+          return (
+            <SchoolSummary
+              dojo={dojo.school}
+              score={dojo.score}
+              key={i}
+              id={i}
+            />
+          );
         })}
       </div>
     );

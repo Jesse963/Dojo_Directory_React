@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import IndividualTag from "./IndividualTag";
 import "./TagContainer.css";
+import Navbar from "../navbar/navbar";
+import SummaryCardContainer from "../summaryCardContainer/summaryCardContainer";
 
 let tags = [];
 
@@ -27,10 +30,11 @@ class TagContainer extends React.Component {
 
   submissionHandler = async () => {
     const tags = document.querySelectorAll(".tag.button.selected");
-    const tagsArray = Array.prototype.slice.call(tags);
+    const tagsArray = Array.from(tags);
     tagsArray.map((tag, i) => {
       tagsArray[i] = tag.textContent;
     });
+    console.log(tagsArray);
 
     switch (this.props.submissionMethod) {
       //New school case = append tags to new school data, post to db
@@ -54,6 +58,29 @@ class TagContainer extends React.Component {
           console.log("should be going home");
           window.location.reload();
         }
+      case "comparison":
+        const options_comparison = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userTags: tagsArray }),
+        };
+        // console.log(options_comparison.body);
+        const res_comp = await fetch("/api/generateScores", options_comparison);
+        const message_comp = await res_comp.json();
+        console.log(message_comp);
+        if (res_comp.status !== 200) {
+          console.log(message_comp);
+        } else {
+          console.log("rendering suggestions");
+          ReactDOM.render(
+            <React.Fragment>
+              <Navbar />
+              <SummaryCardContainer schools={message_comp} />
+            </React.Fragment>,
+            document.getElementById("root")
+          );
+          // window.location.reload();
+        }
     }
   };
 
@@ -63,7 +90,7 @@ class TagContainer extends React.Component {
         <h1>Select Some Tags</h1>
         <div className="tags">
           {tags.map((tag, i) => {
-            return <IndividualTag id={tag._id} key={i} tag={tag.tag} />;
+            return <IndividualTag id={i} _id={tag._id} key={i} tag={tag.tag} />;
           })}
         </div>
         <div className="tags footer">

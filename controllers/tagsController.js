@@ -26,33 +26,25 @@ exports.getTags = async (req, res) => {
 };
 
 exports.generateScores = async (req, res) => {
-  let withScore = {};
-  let final = [];
+  let scoredSchools = [];
   const { userTags } = req.body;
+  console.log(userTags);
   let schools = await Dojo.find({});
 
   await schools.forEach(async (school, i) => {
     const score = await userTags.filter((tag) => school.tags.includes(tag));
-    school.score = score.length;
-
-    console.log(school);
-
-    withScore[school._id] = school.score;
-    final.push(school);
-    // console.log(withScore);
-    // console.log(school.name, school.score.length);
+    school.score = score.length + Math.round(100 * Math.random()) / 100;
+    scoredSchools.push({ school: school, score: school.score });
   });
-  //   console.log(schools);
-  console.log(withScore);
-  //   return res.json(final);
-  return res.json(withScore);
+  scoredSchools.sort(compare);
+  return res.json(scoredSchools.slice(0, 10));
 };
 
 function compare(a, b) {
-  if (a.score < b.score) {
+  if (a.score > b.score) {
     return -1;
   }
-  if (a.score > b.score) {
+  if (a.score < b.score) {
     return 1;
   }
   // a must be equal to b
