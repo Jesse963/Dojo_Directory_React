@@ -2,29 +2,20 @@ import React, { Component } from "react";
 import IndividualTag from "./IndividualTag";
 import "./TagContainer.css";
 
-const tags = [
-  "Striking",
-  "Grappling",
-  "Ground Fighting",
-  "Kicking",
-  "Throwing",
-  "Weapons",
-  "Traditional",
-  "Modern",
-  "Self-Defense",
-  "Competition",
-  "Something else",
-  "Eggs",
-  "Small Classes",
-  "Large Classes",
-  "Beginner Friendly",
-  "Professional Fighting",
-  "Full Contact",
-  "Good for kids",
-  "Adults only classes",
-  "Free Trial Available",
-];
+let tags = [];
+
 class TagContainer extends React.Component {
+  componentDidMount() {
+    this.getTags();
+  }
+
+  getTags = async () => {
+    const response = await fetch("/api/getTags");
+    tags = (await response.json()).tags;
+    await this.setState({ tags: tags });
+    console.log(tags);
+  };
+
   resetTags() {
     const tags = document.querySelectorAll(".tag.button");
     tags.forEach((tag) => {
@@ -72,7 +63,7 @@ class TagContainer extends React.Component {
         <h1>Select Some Tags</h1>
         <div className="tags">
           {tags.map((tag, i) => {
-            return <IndividualTag id={i} key={i} tag={tag} />;
+            return <IndividualTag id={tag._id} key={i} tag={tag.tag} />;
           })}
         </div>
         <div className="tags footer">

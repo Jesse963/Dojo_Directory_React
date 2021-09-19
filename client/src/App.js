@@ -24,11 +24,11 @@ function App() {
     <React.Fragment>
       <NavBar />
 
-      {/* <StartPage listAllSchools={listAllSchools} /> */}
-      {/* <SchoolPag5eRoot /> */}
+      <StartPage listAllSchools={listAllSchools} />
+      {/* <SchoolPageRoot /> */}
       {/* <SummaryCardContainer schools={testDojos} /> */}
       {/* <TagContainer /> */}
-      <NewSchoolForm />
+      {/* <NewSchoolsForm /> */}
     </React.Fragment>
   );
 }

@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import "./StartPage.css";
+import ReactDOM from "react-dom";
+import NewSchoolsForm from "../NewSchoolForm/NewSchoolForm";
+import NavBar from "../navbar/navbar";
+import TagContainer from "../Tagging/TagContainer";
+import { compareArrays } from "../../Scripts/ScoreCalculations";
 
 class StartPage extends React.Component {
   getSchools = async () => {
@@ -12,7 +17,34 @@ class StartPage extends React.Component {
     this.setState({ schools: schools });
   };
 
+  renderTagsContainer() {
+    ReactDOM.render(
+      <React.Fragment>
+        <NavBar />
+        <TagContainer />
+      </React.Fragment>,
+      document.getElementById("root")
+    );
+  }
+
+  renderNewSchoolPage() {
+    ReactDOM.render(
+      <React.Fragment>
+        <NavBar />
+        <NewSchoolsForm />
+      </React.Fragment>,
+      document.getElementById("root")
+    );
+  }
+
+  compareArrays = (userTags, schoolTags) => {
+    const intersection = userTags.filter((tag) => schoolTags.includes(tag));
+    console.log(intersection.length);
+    return intersection;
+  };
+
   componentDidMount = async () => {
+    this.compareArrays(["a", "b", "c"], ["a"]);
     let schools = await this.getSchools();
   };
 
@@ -27,8 +59,22 @@ class StartPage extends React.Component {
           then match you against our directory of Dojos, Studios and gyms
         </h4>
         <div id="buttonContainer">
-          <button className="btn btn-primary btn-lg m-3">Find a school</button>
-          <button className="btn btn-primary btn-lg m-3">Add a school</button>
+          <button
+            className="btn btn-primary btn-lg m-3"
+            onClick={() => {
+              this.renderTagsContainer();
+            }}
+          >
+            Find a school
+          </button>
+          <button
+            className="btn btn-primary btn-lg m-3"
+            onClick={() => {
+              this.renderNewSchoolPage();
+            }}
+          >
+            Add a school
+          </button>
           <button
             className="btn btn-primary btn-lg m-3"
             // onClick={() => console.log(this.state.schools)}
