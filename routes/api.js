@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   retrieveAllDBEntries,
   addNewSchool,
+  searchByName,
 } = require("../controllers/dojosController");
 const {
   submitReview,
@@ -18,6 +19,7 @@ const {
 //Dojo routes
 router.get("/getAll", retrieveAllDBEntries);
 router.post("/addNewSchool", addNewSchool);
+router.post("/searchSchools", searchByName);
 
 //Review routes
 router.post("/submitReview", submitReview);

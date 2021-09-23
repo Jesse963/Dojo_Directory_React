@@ -71,3 +71,22 @@ exports.addNewSchool = async (req, res) => {
   //   \n\n${process.env.BASE_URL}/api/verifyNewAccount?token=${token}`,
   // };
 };
+
+exports.searchByName = async (req, res) => {
+  console.log(req.body);
+  const response = await Dojo.find({
+    $or: [
+      {
+        name: { $regex: req.body.search, $options: "i" },
+      },
+      {
+        address: { $regex: req.body.search, $options: "i" },
+      },
+      {
+        sensei: { $regex: req.body.search, $options: "i" },
+      },
+    ],
+  });
+  console.log(response);
+  return res.json(response);
+};

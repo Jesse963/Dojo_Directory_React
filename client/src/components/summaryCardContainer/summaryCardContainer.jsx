@@ -18,6 +18,7 @@ class SummaryCardContainer extends React.Component {
             <SchoolSummary
               dojo={dojo.school}
               score={dojo.score}
+              history={this.props.schools}
               key={i}
               id={i}
             />

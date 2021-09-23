@@ -77,10 +77,10 @@ class StartPage extends React.Component {
           </button>
           <button
             className="btn btn-primary btn-lg m-3"
-            // onClick={() => console.log(this.state.schools)}
-            onClick={() => this.props.listAllSchools(this.state.schools)}
+            onClick={() => alert("You haven't dont that yet, stupid")}
+            // onClick={() => this.props.listAllSchools(this.state.schools)}
           >
-            List All School
+            Search schools
           </button>
         </div>
       </div>

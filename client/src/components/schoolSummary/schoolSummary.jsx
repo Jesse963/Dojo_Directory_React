@@ -10,7 +10,7 @@ class SchoolSummary extends React.Component {
     ReactDOM.render(
       <React.Fragment>
         <NavBar />
-        <SchoolPageRoot dojo={this.props.dojo} />
+        <SchoolPageRoot dojo={this.props.dojo} history={this.props.history} />
       </React.Fragment>,
       document.querySelector("#root")
     );
