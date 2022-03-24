@@ -1,21 +1,6 @@
 #imageGalleryRoot {
-  width: 100vw;
-  height: 100vw;
-  display: flex;
-  flex-direction: row;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  border: 2px solid red;
 }
 
-@media only screen and (min-width: 600px) {
-  #imageGalleryRoot {
-    margin-top: 3vh;
-    flex-direction: column;
-    margin-left: 5vh;
-    margin-right: 5vh;
-    max-height: 80vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    max-width: 41vw;
-  }
+@media only screen and (min-width: 1000px) {
 }
