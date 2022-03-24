@@ -7,23 +7,21 @@ const emptyArray = [];
 class SummaryCardContainer extends React.Component {
   render() {
     return (
-      <div id="cardContainer">
-        {/* {this.props.schools.map((dojo, i) => {
-          console.log(dojo.name);
-          return <SchoolSummary dojo={dojo} key={i} />;
-        })} */}
-        {this.props.schools.map((dojo, i) => {
-          console.log(this.props, dojo);
-          return (
-            <SchoolSummary
-              dojo={dojo.school}
-              score={dojo.score}
-              history={this.props.schools}
-              key={i}
-              id={i}
-            />
-          );
-        })}
+      <div className="main container">
+        <div className="card container">
+          {this.props.schools.map((dojo, i) => {
+            console.log(this.props, dojo);
+            return (
+              <SchoolSummary
+                dojo={dojo.school}
+                score={dojo.score}
+                history={this.props.schools}
+                key={i}
+                id={i}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   }

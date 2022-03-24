@@ -1,18 +1,84 @@
-#schoolPageRoot {
-  background-color: rgb(240, 250, 256);
-  height: 93vh;
-  overflow: auto;
+.content.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 50%;
+  height: 100%;
 }
 
-#schoolPageRoot h1 {
-  text-align: center;
-  max-height: 5rem;
-  margin-bottom: 2vh;
-  margin-top: 1vh;
+#mainContent {
+  padding: 0 1rem;
+  overflow-y: auto;
+  max-height: 80%;
 }
 
-@media only screen and (min-width: 600px) {
-  #schoolPageMainContainer {
-    display: flex;
+#imageGalleryRoot {
+  width: 99%;
+  height: 20%;
+  /* aspect-ratio: 1920/1080; */
+}
+
+.content.controls {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+h2 {
+  font-size: 3rem;
+}
+h3 {
+  font-size: 2.5rem;
+}
+
+.content.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+#toTop {
+  opacity: 0.8;
+  color: black !important;
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background-color: lightblue;
+  font-size: 1rem;
+  z-index: 2;
+  position: absolute;
+  right: 1rem;
+  bottom: 6rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .content.container {
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+  #mainContent {
+    height: 100%;
+    max-height: none;
+  }
+  #mainContent,
+  #imageGalleryRoot {
+    width: 50%;
+  }
+  #imageGalleryRoot {
+    height: 75%;
+    margin-top: 5.5rem;
+  }
+  .final.content {
+    height: 75%;
+    border: 2px solid var(--light-colour);
+    margin: 2rem auto;
+    box-shadow: var(--shadow);
+    padding: 0 1rem;
+  }
+  .final.content p {
+    font-size: 1.2rem;
+    text-align: left;
+  }
+
+  #toTop {
+    display: none;
   }
 }

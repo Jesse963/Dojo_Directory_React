@@ -3,10 +3,9 @@ import "./navbar.css";
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-dark bg-dark">
-      <a className="navbar-brand" href="/">
-        Dojo Directory V2
-        <span className="badge badge-pill badge-secondary"></span>
+    <nav className="navbar">
+      <a className="" href="/">
+        <h1>Dojo Directory</h1>
       </a>
     </nav>
   );

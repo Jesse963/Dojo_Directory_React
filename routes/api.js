@@ -16,6 +16,11 @@ const {
   generateScores,
 } = require("../controllers/tagsController");
 
+const {
+  retrieveLocations,
+  postSuburb,
+} = require("../controllers/geolocationTesting");
+
 //Dojo routes
 router.get("/getAll", retrieveAllDBEntries);
 router.post("/addNewSchool", addNewSchool);
@@ -29,5 +34,9 @@ router.get("/getReviews", getReviews);
 router.get("/getTags", getTags);
 router.post("/submitTagsArray", submitTagsArray);
 router.post("/generateScores", generateScores);
+
+//Geolocation Testing
+router.get("/getSuburbs", retrieveLocations);
+router.post("/postSuburb", postSuburb);
 
 module.exports = router;

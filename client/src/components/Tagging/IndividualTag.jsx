@@ -1,19 +1,18 @@
 import React, { Component } from "react";
+import "./IndividualTag.css";
 
 class IndividualTag extends React.Component {
   clickHandler() {
     console.log(`clicked ${this.props.tag}`);
     const button = document.getElementById("tagButton" + this.props.id);
-    button.classList.toggle("btn-primary");
     button.classList.toggle("selected");
-    button.classList.toggle("btn-outline-primary");
   }
 
   render() {
     return (
       <button
         id={"tagButton" + this.props.id}
-        className="tag button btn btn-outline-primary btn-lg m-1"
+        className="tag button"
         onClick={() => this.clickHandler()}
       >
         {this.props.tag}

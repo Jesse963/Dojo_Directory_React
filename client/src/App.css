@@ -1,38 +1,139 @@
-.App {
+html {
+  --main-colour: #888;
+  --dark-colour: #333;
+  --light-colour: #eee;
+  --text-colour: #444;
+  --shadow: 0.3rem 0.3rem 0.5rem #888888;
+  --default-width: 80ch;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+}
+
+.main.container {
+  background-color: white;
   text-align: center;
+  min-height: 40vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+/* Base Text styles. */
+h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+h2 {
+  font-size: 2.5rem;
+}
+p {
+  color: var(--text-colour);
+}
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--main-colour);
+}
+a:hover {
+  color: var(--dark-colour);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Base Buttons */
+button {
+  font-size: 1.2rem;
+  border: 2px solid var(--main-colour);
+  background-color: transparent;
+  color: var(--text-colour);
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  margin: 0.5rem;
+  border-radius: 1rem;
+  transition: all 0.1s ease-in-out;
+}
+button:hover,
+button:focus {
+  box-shadow: var(--shadow);
+  transform: translate(-0.3rem, -0.3rem);
+}
+button:active {
+  transform: translate(0, 0);
+  box-shadow: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+form {
+  text-align: left;
+  border: 2px solid var(--light-colour);
+  box-shadow: var(--shadow);
+  border-radius: 1.5rem;
+  margin: 2rem auto;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding-bottom: 2rem;
+  background-color: white;
 }
 
-.App-link {
-  color: #61dafb;
+form h2 {
+  text-align: center;
+}
+form input {
+  width: 90%;
+  padding-left: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  border: 2px solid var(--light-colour);
+  margin-bottom: 1rem;
+}
+form input:focus {
+  border-color: var(--dark-colour);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+form label {
+  color: var(--text-colour);
+  font-size: 1.2rem;
+}
+form p {
+  margin: 1rem;
+}
+form textarea {
+  width: 90%;
+  height: 5rem;
+  border: none;
+  border: 2px solid var(--light-colour);
+  border-radius: 0.5rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .main.container {
+    margin: 2rem auto;
+    background-color: white;
+    border: 2px solid black;
+    width: 150ch;
+    justify-content: center;
+    height: 100vh;
+    box-shadow: var(--shadow);
+    padding: 1rem 5rem 0 5rem;
+    max-height: 85vh;
   }
-  to {
-    transform: rotate(360deg);
+
+  .main.container h4 {
+    text-align: center;
+    font-size: 2rem;
+  }
+  .main.container h1 {
+    font-size: 3.5rem;
+  }
+  #root {
+    justify-content: space-between;
+  }
+  form {
+    width: 80ch;
   }
 }

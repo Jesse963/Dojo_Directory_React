@@ -26,15 +26,22 @@ class SchoolSummary extends React.Component {
         }}
       >
         <h2 id="name">{dojo.name || "no ID"}</h2>
+        <p id="schoolScore">School Score: {this.props.score}</p>
         <div className="school summary content">
-          <div id="description">{dojo.description}</div>
-          <div id="schoolDetails">
-            <h3 id="schoolScore">School Score: {this.props.score}</h3>
+          <p id="description">{dojo.description}</p>
+          <div className="school details">
             <p className="contact element">{`Contact | ${dojo.sensei}`}</p>
-            <p className="contact element">{`Phone | ${
-              dojo.phone || "0415 927 738"
-            }`}</p>
-            <p className="contact element">{`Email | ${dojo.email}`}</p>
+            <p>
+              <a href="tel:0415927738" className="contact element">{`Phone | ${
+                dojo.phone || "0415 927 738"
+              }`}</a>
+            </p>
+            <p>
+              <a
+                href="mailto:jesse-jenkins@hotmail.com"
+                className="contact element"
+              >{`Email | ${dojo.email}`}</a>
+            </p>
             <p className="contact element">{`Address | ${dojo.address}`}</p>
           </div>
         </div>

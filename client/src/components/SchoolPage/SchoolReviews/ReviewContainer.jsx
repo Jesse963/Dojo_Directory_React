@@ -1,54 +1,33 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useEffect } from "react";
 import "./ReviewContainer.css";
 import ReviewElement from "./ReviewElement";
-import SubmitReviewForm from "./SubmitReview";
 
-let reviews = [];
+function ReviewContainer(props) {
+  const [reviews, setReviews] = useState([]);
 
-class ReviewContainer extends React.Component {
-  state = {
-    reviews: [],
-  };
-  getReviews = async () => {
+  useEffect(() => {
+    console.log(reviews.length);
+    if (reviews.length === 0) {
+      getReviews();
+    }
+  }, []);
+
+  const getReviews = async () => {
     const response = await fetch(
-      "/api/getReviews?school_id=" + this.props.school_id
+      "/api/getReviews?school_id=" + props.school_id
     );
-    reviews = await response.json();
-    this.setState(reviews);
+    const tempReviews = await response.json();
+    setReviews(tempReviews.reviews);
   };
 
-  submitReviewButtonHandler() {
-    ReactDOM.render(
-      <React.Fragment>
-        <SubmitReviewForm school_id={this.props.school_id} />
-      </React.Fragment>,
-      document.querySelector("#reviewContainer")
-    );
-  }
-
-  componentDidMount() {
-    this.getReviews();
-  }
-
-  render() {
-    return (
-      <div id="reviewContainer">
-        <h2>Reviews |</h2>
-        <div id="reviewContent">{/* {this.state.reviews.mas */}</div>
-        {this.state.reviews.map((review, i) => {
-          console.log(review || "");
-          return <ReviewElement review={review} key={i} />;
-        })}
-        <button
-          className="btn btn-primary"
-          onClick={() => this.submitReviewButtonHandler()}
-        >
-          Submit a review
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div id="reviewContainer">
+      <div id="reviewContent">{/* {this.state.reviews.mas */}</div>
+      {reviews.map((review, i) => {
+        return <ReviewElement review={review} key={i} />;
+      })}
+    </div>
+  );
 }
 
 export default ReviewContainer;

@@ -6,6 +6,8 @@
   background-size: 100%;
   background-repeat: no-repeat;
   margin-bottom: 2vh;
+
+  display: none;
 }
 
 @media only screen and (min-width: 600px) {

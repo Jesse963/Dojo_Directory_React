@@ -76,6 +76,7 @@ class TagContainer extends React.Component {
             <React.Fragment>
               <Navbar />
               <SummaryCardContainer schools={message_comp} />
+              <Navbar />
             </React.Fragment>,
             document.getElementById("root")
           );
@@ -86,9 +87,13 @@ class TagContainer extends React.Component {
 
   render() {
     return (
-      <div id="tagsContainer">
-        <h1>Select Some Tags</h1>
-        <div className="tags">
+      <div className="main container">
+        <h2>What interests you?</h2>
+        <p className="description text">
+          Select some items from the list below and we'll find the perfect
+          school for you!
+        </p>
+        <div className="tags wrapper">
           {tags.map((tag, i) => {
             return <IndividualTag id={i} _id={tag._id} key={i} tag={tag.tag} />;
           })}

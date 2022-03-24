@@ -1,43 +1,122 @@
-import React, { Component } from "react";
-import "./SchoolPageContent.css";
+import React, { useState } from "react";
 import ReviewContainer from "../SchoolReviews/ReviewContainer";
 import ReactDOM from "react-dom";
 import NavBar from "../../navbar/navbar";
 import SummaryCardContainer from "../../summaryCardContainer/summaryCardContainer";
 
-class SchoolPageContent extends React.Component {
-  backToSuggestionsHandler() {
-    console.log("test");
+function SchoolPageContent(props) {
+  const [content, setContent] = useState("about");
+  console.log(content);
+  const backToSuggestionsHandler = () => {
     ReactDOM.render(
       <React.Fragment>
         <NavBar />
-        <SummaryCardContainer schools={this.props.history} />
+        <SummaryCardContainer schools={props.history} />
+        <NavBar />
       </React.Fragment>,
       document.getElementById("root")
     );
-  }
-  render() {
-    const dojo = this.props.dojo;
-    return (
-      <div id="mainContent">
-        <h2>About Us |</h2>
-        <p id={"about"}>{dojo.description}</p>
-        <h2>Contact |</h2>
-        <p>{dojo.phone}</p>
-        <p>{dojo.email}</p>
-        <p>{dojo.address}</p>
-        <ReviewContainer school_id={this.props.dojo._id} />
+  };
+
+  const submitReviewButtonHandler = () => {
+    const modal = document.getElementById("reviewFormDialog");
+    console.log(modal);
+    modal.showModal();
+  };
+
+  const closeModal = () => {
+    const modal = document.getElementById("reviewFormDialog");
+    modal.close();
+  };
+
+  const contentSwitch = () => {
+    switch (content) {
+      case "about":
+        return (
+          <div className="final content">
+            <h3>About Us</h3>
+            <p id={"about"}>{dojo.description}</p>
+          </div>
+        );
+      case "contact":
+        return (
+          <div className="final content">
+            <h3>Contact</h3>
+            <p>{dojo.phone}</p>
+            <p>{dojo.email}</p>
+            <p>{dojo.address}</p>
+          </div>
+        );
+      case "reviews":
+        return (
+          <div className="final content">
+            <h3>Reviews</h3>
+            <ReviewContainer school_id={props.dojo._id} />;
+          </div>
+        );
+      default:
+        return 0;
+    }
+  };
+
+  const dojo = props.dojo;
+  return (
+    <div id="mainContent">
+      <div className="content controls">
+        <a onClick={() => setContent("about")}>About Us</a>
+        <a onClick={() => setContent("reviews")}>Reviews</a>
+        <a onClick={() => setContent("contact")}>Contact Info</a>
+      </div>
+      {contentSwitch()}
+      <div className="content footer">
         <button
-          className="btn btn-danger mt-2"
           onClick={() => {
-            this.backToSuggestionsHandler();
+            backToSuggestionsHandler();
           }}
         >
           Back to Suggestions
         </button>
+        <button
+          onClick={() => {
+            submitReviewButtonHandler();
+          }}
+        >
+          Submit a review
+        </button>
       </div>
-    );
-  }
+
+      {/* Submit review form dialog */}
+      <dialog id="reviewFormDialog">
+        <form
+          id="reviewForm"
+          method="POST"
+          action={"/api/submitReview?school_id=" + props.dojo._id}
+        >
+          <h4>Submit a Review</h4>
+          <label htmlFor="email">Email</label>
+          <input name="email" type="email" required="true" />
+          <label htmlFor="first_name">First Name</label>
+          <input name="first_name" type="text" required="true" />
+          <label htmlFor="last_name">Last Name</label>
+          <input name="last_name" type="text" required="true" />
+          <label htmlFor="review">Review</label>
+          <textarea name="review" required="true" />
+          <div className="controls">
+            <button type="submit">Submit</button>
+            <button
+              type="cancel"
+              onClick={(e) => {
+                e.preventDefault();
+                closeModal();
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </dialog>
+    </div>
+  );
 }
 
 export default SchoolPageContent;

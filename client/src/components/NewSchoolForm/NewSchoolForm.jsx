@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import TagContainer from "../Tagging/TagContainer";
+import "./NewSchoolForm.css";
 
 class NewSchoolForm extends Component {
   state = { error: "" };
@@ -24,100 +25,66 @@ class NewSchoolForm extends Component {
 
   render() {
     return (
-      <div id="newSchoolFormContainer">
-        <form
-          className="shadow-lg p-3 mb-5 bg-white rounded page container"
-          id="newSchoolForm"
-          style={{ marginTop: "10%" }}
-        >
-          <div
-            style={{ paddingLeft: "5%", paddingRight: "5%", textAlign: "left" }}
-          >
-            <h1 style={{ textAlign: "center" }}>Welcome</h1>
-            <p>
-              Name of School:
-              <input
-                name="school_name"
-                type="text"
-                style={{ width: "100%" }}
-                class="form-control"
-                required="true"
-              />
-            </p>
-            <p>
-              Email:
-              <input
-                name="email"
-                type="email"
-                style={{ width: "100%" }}
-                class="form-control"
-                required="true"
-              />
-              <p style={{ color: "red" }}>{this.state.error}</p>
-            </p>
-            <p>
-              First Name:
-              <input
-                name="first_name"
-                type="text"
-                style={{ width: "100%" }}
-                class="form-control"
-                required="true"
-              />
-            </p>
-            <p>
-              Last Name:
-              <input
-                name="last_name"
-                type="text"
-                style={{ width: "100%" }}
-                class="form-control"
-                required="true"
-              />
-            </p>
-            <p>
-              Phone (Optional):
-              <input
-                name="phone"
-                type="tel"
-                style={{ width: "100%" }}
-                class="form-control"
-              />
-            </p>
-            <p>
-              Postcode (Optional):
-              <input
-                name="postcode"
-                type="number"
-                style={{ width: "100%" }}
-                class="form-control"
-              />
-            </p>
-            <p>
-              Password:
-              <input
-                name="password"
-                type="password"
-                style={{ width: "100%" }}
-                class="form-control"
-                required="true"
-                minLength="8"
-                maxLength="30"
-              />
-            </p>
-          </div>
-          <div style={{ textAlign: "center" }}>
+      <div className="main container">
+        <form className="new school form" id="newSchoolForm">
+          <h2>Enter your details below!</h2>
+          <p className="intro text">
+            Fill in the form below and your school will be added to our database
+            and suggested to hundreds of potential students!
+          </p>
+          <label htmlFor="school_name">Name of School</label>
+          <input
+            name="school_name"
+            type="text"
+            class="form-control"
+            required="true"
+          />
+          <label htmlFor="email">Email</label>
+          <input
+            name="email"
+            type="email"
+            class="form-control"
+            required="true"
+          />
+          <label htmlFor="first_name">First Name</label>
+          <input
+            name="first_name"
+            type="text"
+            class="form-control"
+            required="true"
+          />
+          <label htmlFor="last_name">Last Name</label>
+          <input
+            name="last_name"
+            type="text"
+            class="form-control"
+            required="true"
+          />
+          <label htmlFor="phone">Phone (Optional)</label>
+          <input name="phone" type="tel" class="form-control" />
+
+          <label htmlFor="postcode">Postcode (Optional)</label>
+          <input name="postcode" type="number" class="form-control" />
+
+          <label htmlFor="password">Password</label>
+          <input
+            name="password"
+            type="password"
+            class="form-control"
+            required="true"
+            minLength="8"
+            maxLength="30"
+          />
+          <div className="controls">
             <button
               type="submit"
               className="btn btn-primary btn-lg m-2"
-              style={{ width: "20%" }}
               onClick={(e) => this.collectFormAndRenderTags(e)}
             >
               Submit
             </button>
             <button
               className="btn btn-danger btn-lg m-2"
-              style={{ width: "20%" }}
               onClick={() => (window.location.href = "/")}
             >
               Cancel

@@ -1,93 +1,70 @@
 #schoolSummaryRoot {
-  margin: 3vh;
-  min-width: 90vw;
-  padding: 2vh;
-  height: 85vh;
-  border: 1px solid black;
-  box-shadow: 5px 5px 4px #888888;
-  cursor: pointer;
-  border-radius: 3vh;
-  background-color: white;
-  overflow: auto;
+  border: 2px solid var(--light-colour);
+  border-radius: 1.5rem;
+  padding: 0 1rem;
+  min-width: 80vw;
+  box-shadow: var(--shadow);
+  transition: all 0.1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-snap-align: start;
 }
-#schoolSummaryRoot:hover {
-  box-shadow: 10px 10px 8px #888888;
-  border-color: chartreuse !important;
+#schoolSummaryRoot:hover,
+#schoolSummaryRoot:focus {
+  border-color: var(--dark-colour);
+  cursor: pointer;
 }
 
 #schoolSummaryRoot:active {
-  transform: translate(4px, 4px);
   box-shadow: none;
-  /* box-shadow: 5px 5px 4px #888888; */
+  transform: translate(0.3rem, 0.3rem);
+}
+
+.school.summary.content {
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+  margin-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-y: auto;
+}
+#description {
+  text-align: justify;
 }
 
 #name {
   text-align: center;
 }
 
-#description {
-  text-align: justify;
-  padding-bottom: 2vh;
-  margin-bottom: 2vh;
-  border-bottom: 2px solid black;
-}
-
-#schoolDetails {
-  height: 25vh;
-  text-align: center;
-}
-
-#schoolDetails h4 {
-  text-align: center;
-}
-
-.contact.element {
-  font-weight: 600;
-}
-
-.suggestion.rank0 {
-  border: 8px solid lightgreen !important;
-}
-
-.suggestion.rank1 {
-  border: 5px solid lightgreen !important;
-}
-.suggestion.rank2 {
-  border: 2px solid lightgreen !important;
-}
-
 #schoolScore {
+  color: var(--main-colour);
+  font-size: 1.5rem;
   text-align: center;
-  padding-bottom: 2vh;
-  margin-bottom: 2vh;
-  border-bottom: 2px solid black;
+
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--light-colour);
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 1000px) {
   #schoolSummaryRoot {
-    height: auto;
-    width: 60vw;
-    overflow: unset;
-    /* overflow: hidden !important; */
+    min-width: initial;
   }
 
   .school.summary.content {
-    height: auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: 70% 30%;
   }
-
+  #schoolScore {
+    width: 30%;
+  }
+  .school.details {
+    text-align: right;
+  }
   #description {
     text-align: justify;
-    margin-bottom: 2vh;
-    width: 70vw;
-    margin-right: 2vw;
-    border: none;
-    height: auto;
-  }
-
-  #schoolDetails {
-    height: auto;
-    width: 21vw;
-    text-align: right;
+    border-right: 1px var(--light-colour) solid;
+    padding-right: 1rem;
   }
 }

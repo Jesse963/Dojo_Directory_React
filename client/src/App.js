@@ -7,6 +7,7 @@ import SchoolPageRoot from "./components/SchoolPage/SchoolPageRoot";
 import StartPage from "./components/StartPage/StartPage";
 import TagContainer from "./components/Tagging/TagContainer";
 import NewSchoolForm from "./components/NewSchoolForm/NewSchoolForm";
+import SubmitReviewForm from "./components/SchoolPage/SchoolReviews/SubmitReview";
 
 function listAllSchools(schools) {
   console.log(schools.schools);
@@ -14,6 +15,7 @@ function listAllSchools(schools) {
     <React.Fragment>
       <NavBar />
       <SummaryCardContainer schools={schools.schools} />
+      <NavBar />
     </React.Fragment>,
     document.querySelector("#root")
   );
@@ -25,6 +27,8 @@ function App() {
       <NavBar />
 
       <StartPage listAllSchools={listAllSchools} />
+      <SubmitReviewForm />
+      <NavBar />
       {/* <SchoolPageRoot /> */}
       {/* <SummaryCardContainer schools={testDojos} /> */}
       {/* <TagContainer /> */}

@@ -1,61 +1,27 @@
 import React, { Component } from "react";
 import "./SubmitReview.css";
 
-class SubmitReviewForm extends React.Component {
-  render() {
-    return (
-      <div>
-        <h2>Submit a Review |</h2>
-        <form
-          id="reviewForm"
-          method="POST"
-          action={"/api/submitReview?school_id=" + this.props.school_id}
-        >
-          <p>
-            Email:
-            <input
-              name="email"
-              type="email"
-              style={{ width: "100%" }}
-              class="form-control"
-              required="true"
-            />
-          </p>
-          <div id="formNameComponent">
-            <p id="first_name">
-              First Name:
-              <input
-                name="first_name"
-                type="text"
-                class="form-control"
-                required="true"
-              />
-            </p>
-            <p>
-              Last Name:
-              <input
-                name="last_name"
-                type="text"
-                class="form-control"
-                required="true"
-              />
-            </p>
-          </div>
-          <p id="reviewEntry">
-            Review:
-            <textarea name="review" class="form-control" required="true" />
-          </p>
-          <button
-            type="submit"
-            className="btn btn-primary btn-lg m-2"
-            style={{ width: "20%" }}
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-    );
-  }
+function SubmitReviewForm(props) {
+  return (
+    <dialog id="reviewFormDialog">
+      <form
+        id="reviewForm"
+        method="POST"
+        action={"/api/submitReview?school_id=" + props.school_id}
+      >
+        <h4>Submit a Review</h4>
+        <label htmlFor="email">Email</label>
+        <input name="email" type="email" required="true" />
+        <label htmlFor="first_name">First Name</label>
+        <input name="first_name" type="text" required="true" />
+        <label htmlFor="last_name">Last Name</label>
+        <input name="last_name" type="text" required="true" />
+        <label htmlFor="review">Review</label>
+        <textarea name="review" required="true" />
+        <button type="submit">Submit</button>
+      </form>
+    </dialog>
+  );
 }
 
 export default SubmitReviewForm;

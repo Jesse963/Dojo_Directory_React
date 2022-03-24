@@ -1,4 +1,13 @@
-.navbar-brand {
-  margin-left: 2vh;
-  height: 6vh;
+nav {
+  background-color: var(--dark-colour);
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+nav a {
+  font-size: 3rem;
+  color: var(--light-colour);
+  transition: all 0.2s ease-in-out;
 }

@@ -22,6 +22,7 @@ class StartPage extends React.Component {
       <React.Fragment>
         <NavBar />
         <TagContainer submissionMethod="comparison" />
+        <NavBar />
       </React.Fragment>,
       document.getElementById("root")
     );
@@ -32,6 +33,7 @@ class StartPage extends React.Component {
       <React.Fragment>
         <NavBar />
         <NewSchoolsForm />
+        <NavBar />
       </React.Fragment>,
       document.getElementById("root")
     );
@@ -51,16 +53,16 @@ class StartPage extends React.Component {
   render() {
     console.log(this.state);
     return (
-      <div id="StartPageContainer">
+      <div className="main container">
         <h1>Welcome to the Dojo Directory</h1>
-        <h4>
+        <p className="intro text">
           The Dojo Directory is a service for matching you to your perfect
           martial arts school Click the button below and take the quiz, we'll
           then match you against our directory of Dojos, Studios and gyms
-        </h4>
+        </p>
         <div id="buttonContainer">
           <button
-            className="btn btn-primary btn-lg m-3"
+            className="control button"
             onClick={() => {
               this.renderTagsContainer();
             }}
@@ -68,7 +70,7 @@ class StartPage extends React.Component {
             Find a school
           </button>
           <button
-            className="btn btn-primary btn-lg m-3"
+            className="control button"
             onClick={() => {
               this.renderNewSchoolPage();
             }}
@@ -76,7 +78,7 @@ class StartPage extends React.Component {
             Add a school
           </button>
           <button
-            className="btn btn-primary btn-lg m-3"
+            className="control button"
             onClick={() => alert("You haven't dont that yet, stupid")}
             // onClick={() => this.props.listAllSchools(this.state.schools)}
           >
