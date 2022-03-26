@@ -90,3 +90,9 @@ exports.searchByName = async (req, res) => {
   console.log(response);
   return res.json(response);
 };
+
+exports.checkEmailExists = async (req, res) => {
+  console.log(req.body);
+  const response = await Dojo.find(req.body);
+  return res.json(response.length === 0);
+};

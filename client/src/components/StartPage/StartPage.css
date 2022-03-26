@@ -1,0 +1,14 @@
+.content.wrapper {
+  margin: auto auto;
+  width: 85%;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--main-colour);
+  padding: 1rem;
+  background-color: white;
+}
+@media screen and (min-width: 1000px) {
+  .content.wrapper {
+    padding: 3rem;
+    width: 60%;
+  }
+}

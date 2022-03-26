@@ -1,7 +1,8 @@
 html {
-  --main-colour: #888;
-  --dark-colour: #333;
-  --light-colour: #eee;
+  --main-colour: #efc050;
+  --background-colour: rgba(239, 192, 80, 0.3);
+  --dark-colour: #eaad1f;
+  --light-colour: #f5d68f;
   --text-colour: #444;
   --shadow: 0.3rem 0.3rem 0.5rem #888888;
   --default-width: 80ch;
@@ -10,7 +11,7 @@ html {
 #root {
   display: flex;
   flex-direction: column;
-
+  background-color: var(--background-colour);
   height: 100vh;
 }
 
@@ -74,7 +75,7 @@ form {
   width: 90%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   padding-bottom: 2rem;
   background-color: white;
 }
@@ -89,15 +90,17 @@ form input {
   border-radius: 0.5rem;
   border: none;
   border: 2px solid var(--light-colour);
-  margin-bottom: 1rem;
+  margin: 0.5rem auto;
 }
 form input:focus {
   border-color: var(--dark-colour);
 }
 
 form label {
+  margin: 0 2rem;
   color: var(--text-colour);
   font-size: 1.2rem;
+  text-align: left;
 }
 form p {
   margin: 1rem;
@@ -108,19 +111,38 @@ form textarea {
   border: none;
   border: 2px solid var(--light-colour);
   border-radius: 0.5rem;
+  margin: 0.5rem auto;
+  font-size: 1.2rem;
 }
 
+.state.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.state.wrapper input {
+  width: 28% !important;
+  margin: 1rem 0;
+}
+form input:valid,
+form textarea:valid {
+  border: 2px solid rgba(144, 238, 144, 0.4);
+}
+.controls {
+  width: 100%;
+  text-align: center;
+}
 @media only screen and (min-width: 1000px) {
   .main.container {
     margin: 2rem auto;
-    background-color: white;
     border: 2px solid black;
     width: 150ch;
+    min-height: 60%;
+    height: 70%;
     justify-content: center;
-    height: 100vh;
     box-shadow: var(--shadow);
     padding: 1rem 5rem 0 5rem;
-    max-height: 85vh;
+    margin: auto auto;
   }
 
   .main.container h4 {

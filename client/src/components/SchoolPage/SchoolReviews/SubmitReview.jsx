@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./SubmitReview.css";
 
 function SubmitReviewForm(props) {
   return (

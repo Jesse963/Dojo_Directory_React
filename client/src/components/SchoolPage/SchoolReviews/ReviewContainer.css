@@ -13,6 +13,7 @@
   box-shadow: var(--shadow);
   padding: 1rem;
   word-wrap: break-word;
+  border-radius: 1rem;
 }
 .review.header {
   display: flex;

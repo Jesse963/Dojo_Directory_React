@@ -5,6 +5,7 @@ const {
   retrieveAllDBEntries,
   addNewSchool,
   searchByName,
+  checkEmailExists,
 } = require("../controllers/dojosController");
 const {
   submitReview,
@@ -25,6 +26,7 @@ const {
 router.get("/getAll", retrieveAllDBEntries);
 router.post("/addNewSchool", addNewSchool);
 router.post("/searchSchools", searchByName);
+router.post("/checkEmailExists", checkEmailExists);
 
 //Review routes
 router.post("/submitReview", submitReview);

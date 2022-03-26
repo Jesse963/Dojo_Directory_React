@@ -33,11 +33,21 @@ exports.generateScores = async (req, res) => {
 
   await schools.forEach(async (school, i) => {
     const score = await userTags.filter((tag) => school.tags.includes(tag));
-    school.score = score.length + Math.round(100 * Math.random()) / 100;
+
+    school.score = score.length;
+    // + Math.round(100 * Math.random()) / 100;
     scoredSchools.push({ school: school, score: school.score });
   });
-  scoredSchools.sort(compare);
+  let sortedSchools = scoredSchools.sort(compare).map((a) => a.school.score);
+  console.log(sortedSchools);
+  console.log(
+    sortedSchools.filter((school) => {
+      return school.score != 0;
+    })
+  );
+
   return res.json(scoredSchools.slice(0, 10));
+  return res.json(sortedSchools.slice(0, 10));
 };
 
 function compare(a, b) {
@@ -47,6 +57,5 @@ function compare(a, b) {
   if (a.score < b.score) {
     return 1;
   }
-  // a must be equal to b
   return 0;
 }

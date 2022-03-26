@@ -12,8 +12,16 @@
 }
 .tag.button {
   font-size: 1rem;
-  padding: 0.75rem;
+  padding: 1rem 0rem;
 }
+.selected {
+  color: var(--text-colour);
+  font-weight: 700;
+  border: 2px solid var(--dark-colour);
+  box-shadow: var(--shadow);
+  background-color: var(--light-colour);
+}
+
 @media only screen and (min-width: 1000px) {
   .tags.wrapper {
     display: inline-block;

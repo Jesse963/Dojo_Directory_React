@@ -1,7 +1,0 @@
-.selected {
-  color: var(--dark-colour);
-  font-weight: 700;
-  border: 2px solid var(--dark-colour);
-  box-shadow: var(--shadow);
-  /* background-color: var(--light-colour); */
-}

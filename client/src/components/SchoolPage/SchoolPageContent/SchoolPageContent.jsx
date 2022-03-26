@@ -35,23 +35,31 @@ function SchoolPageContent(props) {
         return (
           <div className="final content">
             <h3>About Us</h3>
-            <p id={"about"}>{dojo.description}</p>
+            <div className="about container">
+              <p id={"about"}>{dojo.description}</p>
+              <div className="tags container">
+                <h4>School Focuses</h4>
+                <p>{dojo.tags.join(", ")}</p>
+                <p>{dojo.tags.join(", ")}</p>
+                <p>{dojo.tags.join(", ")}</p>
+              </div>
+            </div>
           </div>
         );
       case "contact":
         return (
           <div className="final content">
             <h3>Contact</h3>
-            <p>{dojo.phone}</p>
-            <p>{dojo.email}</p>
-            <p>{dojo.address}</p>
+            <a href={`tel:${dojo.phone}`}>{dojo.phone || "0000 000 000"}</a>
+            <a href={`mailto:${dojo.email}`}>{dojo.email}</a>
+            <a>{dojo.address}</a>
           </div>
         );
       case "reviews":
         return (
           <div className="final content">
             <h3>Reviews</h3>
-            <ReviewContainer school_id={props.dojo._id} />;
+            <ReviewContainer school_id={props.dojo._id} />
           </div>
         );
       default:

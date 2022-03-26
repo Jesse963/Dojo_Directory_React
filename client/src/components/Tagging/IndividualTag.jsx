@@ -1,24 +1,21 @@
-import React, { Component } from "react";
-import "./IndividualTag.css";
+import React from "react";
 
-class IndividualTag extends React.Component {
-  clickHandler() {
-    console.log(`clicked ${this.props.tag}`);
-    const button = document.getElementById("tagButton" + this.props.id);
+function IndividualTag(props) {
+  const clickHandler = () => {
+    console.log(`clicked ${props.tag}`);
+    const button = document.getElementById("tagButton" + props.id);
     button.classList.toggle("selected");
-  }
+  };
 
-  render() {
-    return (
-      <button
-        id={"tagButton" + this.props.id}
-        className="tag button"
-        onClick={() => this.clickHandler()}
-      >
-        {this.props.tag}
-      </button>
-    );
-  }
+  return (
+    <button
+      id={"tagButton" + props.id}
+      className="tag button"
+      onClick={() => clickHandler()}
+    >
+      {props.tag}
+    </button>
+  );
 }
 
 export default IndividualTag;
