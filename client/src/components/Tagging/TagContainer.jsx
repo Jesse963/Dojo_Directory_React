@@ -1,48 +1,43 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import IndividualTag from "./IndividualTag";
 import "./TagContainer.css";
 import Navbar from "../navbar/navbar";
 import SummaryCardContainer from "../summaryCardContainer/summaryCardContainer";
 
-let tags = [];
+function TagContainer(props) {
+  const [tags, setTags] = useState([]);
+  useEffect(() => {
+    getTags();
+  }, []);
 
-class TagContainer extends React.Component {
-  componentDidMount() {
-    this.getTags();
-  }
-
-  getTags = async () => {
+  const getTags = async () => {
     const response = await fetch("/api/getTags");
-    tags = (await response.json()).tags;
-    await this.setState({ tags: tags });
-    console.log(tags);
+    const tempTags = (await response.json()).tags;
+    setTags(tempTags);
+    console.log(tempTags);
   };
 
-  resetTags() {
-    const tags = document.querySelectorAll(".tag.button");
-    tags.forEach((tag) => {
+  const resetTags = () => {
+    const tagButtons = document.querySelectorAll(".tag.button");
+    tagButtons.forEach((tag) => {
       tag.classList.remove("btn-primary");
       tag.classList.remove("selected");
       tag.classList.add("btn-outline-primary");
     });
-  }
+  };
 
-  submissionHandler = async () => {
-    const tags = document.querySelectorAll(".tag.button.selected");
-    const tagsArray = Array.from(tags);
+  const submissionHandler = async () => {
+    const tagButtons = document.querySelectorAll(".tag.button.selected");
+    const tagsArray = Array.from(tagButtons);
     tagsArray.map((tag, i) => {
       tagsArray[i] = tag.textContent;
     });
-    console.log(tagsArray);
-
-    switch (this.props.submissionMethod) {
+    switch (props.submissionMethod) {
       //New school case = append tags to new school data, post to db
       case "newSchool":
-        const { newSchoolData } = this.props;
+        const { newSchoolData } = props;
         newSchoolData.tags = tagsArray;
-        console.log("using new school method");
-        console.log(newSchoolData);
 
         const options = {
           method: "POST",
@@ -53,41 +48,49 @@ class TagContainer extends React.Component {
         const response = await fetch("/api/addNewSchool", options);
         const message = await response.json();
         if (response.status !== 200) {
-          console.log(message.result);
+          console.error(message.result);
         } else {
           console.log("should be going home");
           window.location.reload();
         }
+        return;
+
       case "comparison":
+        console.log("in comparison");
+
         const options_comparison = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userTags: tagsArray }),
         };
-        // console.log(options_comparison.body);
-        const res_comp = await fetch("/api/generateScores", options_comparison);
-        const message_comp = await res_comp.json();
-        console.log(message_comp);
-        if (res_comp.status !== 200) {
-          console.log(message_comp);
+
+        const response_comparison = await fetch(
+          "/api/generateScores",
+          options_comparison
+        );
+
+        const comparison_result = await response_comparison.json();
+        if (response_comparison.status !== 200) {
+          console.log(comparison_result);
         } else {
           console.log("rendering suggestions");
           ReactDOM.render(
             <React.Fragment>
               <Navbar />
-              <SummaryCardContainer schools={message_comp} />
+              <SummaryCardContainer schools={comparison_result} />
               <Navbar />
             </React.Fragment>,
             document.getElementById("root")
           );
           // window.location.reload();
         }
+        return;
     }
   };
 
-  render() {
-    return (
-      <div className="main container">
+  return (
+    <div className="main container">
+      <div className="content wrapper">
         <h2>What interests you?</h2>
         <p className="description text">
           Select some items from the list below and we'll find the perfect
@@ -101,13 +104,13 @@ class TagContainer extends React.Component {
         <div className="tags footer">
           <button
             className="btn btn-secondary btn-lg m-2"
-            onClick={() => this.submissionHandler()}
+            onClick={() => submissionHandler()}
           >
             Submit
           </button>
           <button
             className="btn btn-secondary btn-lg m-2"
-            onClick={() => this.resetTags()}
+            onClick={() => resetTags()}
           >
             Reset
           </button>
@@ -119,8 +122,8 @@ class TagContainer extends React.Component {
           </button>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default TagContainer;
