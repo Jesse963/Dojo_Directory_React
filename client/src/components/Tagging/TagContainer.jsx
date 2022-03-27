@@ -7,10 +7,17 @@ import SummaryCardContainer from "../summaryCardContainer/summaryCardContainer";
 
 function TagContainer(props) {
   const [tags, setTags] = useState([]);
-  useEffect(() => {
-    getTags();
+  useEffect(async () => {
+    await getTags();
+
+    // Remove below code for prod. Randomly selects 10 tags and enters postcode for ease
+    let tags = Array.from(document.querySelectorAll(".tag.button"));
+    const tagsToSelect = tags.sort(() => 0.5 - Math.random()).slice(0, 10);
+    tagsToSelect.forEach((element) => element.classList.add("selected"));
+    document.getElementById("tagContainerPostcode").value = 2137;
   }, []);
 
+  //----------- GET TAGS -------------
   const getTags = async () => {
     const response = await fetch("/api/getTags");
     const tempTags = (await response.json()).tags;
@@ -18,6 +25,7 @@ function TagContainer(props) {
     console.log(tempTags);
   };
 
+  //----------- RESET TAGS -------------
   const resetTags = () => {
     const tagButtons = document.querySelectorAll(".tag.button");
     tagButtons.forEach((tag) => {
@@ -27,9 +35,30 @@ function TagContainer(props) {
     });
   };
 
+  //----------- POSTCODE TO COORDS -------------
+  const postcodeToCoord = async (postcode) => {
+    const response = await fetch("/api/postcodeToCoords", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ postcode: postcode }),
+    });
+    const locationDetails = await response.json();
+    // console.log(locationDetails);
+    return locationDetails;
+  };
+
+  //----------- SUBMISSION HANDLER -------------
   const submissionHandler = async () => {
+    const postcodeElement = document.getElementById("tagContainerPostcode");
+    const maxDistance = document.getElementById("maxDistanceSlider");
     const tagButtons = document.querySelectorAll(".tag.button.selected");
     const tagsArray = Array.from(tagButtons);
+
+    // Check for valid postcode and correct tag number
+
+    if (tagsArray.length > 10 || tagsArray.length < 5)
+      return window.alert("Please select 5-10 items");
+
     tagsArray.map((tag, i) => {
       tagsArray[i] = tag.textContent;
     });
@@ -38,6 +67,14 @@ function TagContainer(props) {
       case "newSchool":
         const { newSchoolData } = props;
         newSchoolData.tags = tagsArray;
+
+        const location = await postcodeToCoord(newSchoolData.postcode);
+        newSchoolData.location = {
+          type: "Point",
+          coordinates: [location.lon, location.lat],
+        };
+
+        console.log(newSchoolData);
 
         const options = {
           method: "POST",
@@ -58,10 +95,29 @@ function TagContainer(props) {
       case "comparison":
         console.log("in comparison");
 
+        if (!postcodeElement.checkValidity())
+          return window.alert("Postcode is not valid");
+
+        const postcodeOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ postcode: postcodeElement.value }),
+        };
+        const res = await fetch("/api/postcodeToCoords", postcodeOptions);
+        const coords = await res.json();
+        const formattedCoords = [coords.lon, coords.lat];
+
+        console.log(formattedCoords);
+
         const options_comparison = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userTags: tagsArray }),
+          body: JSON.stringify({
+            userTags: tagsArray,
+            coordinates: formattedCoords,
+            // Distance recorded in km, search query needs m, convert below
+            maxDistance: maxDistance.value * 1000,
+          }),
         };
 
         const response_comparison = await fetch(
@@ -88,6 +144,35 @@ function TagContainer(props) {
     }
   };
 
+  const checkSlider = () => {
+    if (props.submissionMethod === "comparison")
+      return (
+        <div className="settings container">
+          <input
+            required
+            minLength={4}
+            maxLength={4}
+            type="number"
+            id="tagContainerPostcode"
+            placeholder="Enter Postcode"
+          />
+          <input
+            name="slider"
+            type="range"
+            min="0"
+            max="100"
+            defaultValue="10"
+            class="slider"
+            id="maxDistanceSlider"
+            onInput={() => sliderHandler()}
+          ></input>
+          <label id="sliderOutput" htmlFor="slider">
+            10km
+          </label>
+        </div>
+      );
+  };
+
   return (
     <div className="main container">
       <div className="content wrapper">
@@ -102,28 +187,21 @@ function TagContainer(props) {
           })}
         </div>
         <div className="tags footer">
-          <button
-            className="btn btn-secondary btn-lg m-2"
-            onClick={() => submissionHandler()}
-          >
-            Submit
-          </button>
-          <button
-            className="btn btn-secondary btn-lg m-2"
-            onClick={() => resetTags()}
-          >
-            Reset
-          </button>
-          <button
-            className="btn btn-secondary btn-lg m-2"
-            onClick={() => (window.location.href = "/")}
-          >
-            Home
-          </button>
+          {checkSlider()}
+
+          <button onClick={() => submissionHandler()}>Submit</button>
+          <button onClick={() => resetTags()}>Reset</button>
+          <button onClick={() => (window.location.href = "/")}>Home</button>
         </div>
       </div>
     </div>
   );
 }
+
+const sliderHandler = () => {
+  const slider = document.getElementById("maxDistanceSlider");
+  const rangeIndicator = document.getElementById("sliderOutput");
+  rangeIndicator.textContent = `${slider.value}km`;
+};
 
 export default TagContainer;

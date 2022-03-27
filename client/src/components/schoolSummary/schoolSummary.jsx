@@ -25,7 +25,12 @@ function SchoolSummary(props) {
       }}
     >
       <h2 id="name">{dojo.name || "no ID"}</h2>
-      <p id="schoolScore">School Score: {props.score}</p>
+      <div className="score details">
+        <p id="schoolScore">Score: {Math.round(props.score * 100) / 100}</p>
+        <p id="schoolDistance">
+          Distance : {Math.round(props.distance / 10) / 100} km
+        </p>
+      </div>
       <div className="school summary content">
         <p id="description">{dojo.description}</p>
         <div className="school details">

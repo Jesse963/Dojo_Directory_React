@@ -11,6 +11,7 @@ function SummaryCardContainer(props) {
           <SchoolSummary
             dojo={dojo.school}
             score={dojo.score}
+            distance={dojo.distance}
             history={props.schools}
             key={i}
             id={i}

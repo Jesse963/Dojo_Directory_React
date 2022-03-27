@@ -40,14 +40,18 @@
   text-align: center;
   margin-bottom: 0;
 }
-
-#schoolScore {
-  color: var(--main-colour);
+.score.details {
+  width: max-content;
   font-size: 1.5rem;
   text-align: center;
 
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
   border-bottom: 2px solid var(--light-colour);
+}
+
+.score.details p {
+  color: var(--main-colour);
+  margin: 0.5rem;
 }
 
 @media only screen and (min-width: 1000px) {
@@ -60,9 +64,6 @@
   .school.summary.content {
     display: grid;
     grid-template-columns: 70% 30%;
-  }
-  #schoolScore {
-    width: 30%;
   }
   .school.details {
     text-align: right;

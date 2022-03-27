@@ -14,7 +14,7 @@ let DojoSchema = new Schema(
       type: String,
       required: true,
     },
-    address: {
+    street: {
       type: String,
       unique: true,
     },
@@ -24,13 +24,22 @@ let DojoSchema = new Schema(
     state: {
       type: String,
     },
+    location: {
+      type: {
+        type: String,
+        default: "Point",
+      },
+      coordinates: {
+        type: [Number],
+      },
+    },
     email: {
       type: String,
       required: true,
     },
     description: {
       type: String,
-      default: ``,
+      default: "",
     },
     password: {
       type: String,
@@ -63,7 +72,7 @@ let DojoSchema = new Schema(
     // collection: "users",
   }
 );
-
+DojoSchema.index({ location: "2dsphere" });
 const Dojo = mongoose.model("dojos", DojoSchema);
 module.exports = Dojo;
 
