@@ -32,10 +32,6 @@
   overflow-y: auto;
 }
 
-#description {
-  text-align: justify;
-}
-
 #schoolSummaryRoot #name {
   text-align: center;
   margin-bottom: 0;
@@ -47,6 +43,12 @@
 
   /* padding-bottom: 2rem; */
   border-bottom: 2px solid var(--light-colour);
+}
+.school.details {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .score.details p {
@@ -66,10 +68,9 @@
     grid-template-columns: 70% 30%;
   }
   .school.details {
-    text-align: right;
+    margin-left: 1rem;
   }
   #description {
-    text-align: justify;
     border-right: 1px var(--light-colour) solid;
     padding-right: 1rem;
   }

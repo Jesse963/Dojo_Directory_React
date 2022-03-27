@@ -13,15 +13,29 @@
 .tag.button {
   font-size: 1rem;
   padding: 1rem 0rem;
+  border: 2px solid #eee;
+  color: #444;
 }
 .selected {
-  color: var(--text-colour);
+  color: var(--text-colour) !important;
   font-weight: 700;
-  border: 2px solid var(--dark-colour);
+  border: 2px solid var(--dark-colour) !important;
   box-shadow: var(--shadow);
-  background-color: var(--light-colour);
+  margin: calc(0.5rem-2px) !important;
+  /* background-color: var(--light-colour); */
 }
 
+#sliderOutput {
+  min-width: 5ch;
+}
+
+#tagContainerPostcode {
+  width: 13ch;
+  text-align: center;
+}
+.content.wrapper {
+  text-align: center;
+}
 @media only screen and (min-width: 1000px) {
   .tags.wrapper {
     display: inline-block;
@@ -37,5 +51,6 @@
     flex-direction: row;
     align-items: center;
     gap: 2rem;
+    margin-bottom: 1rem;
   }
 }

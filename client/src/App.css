@@ -1,6 +1,8 @@
 html {
   --main-colour: #efc050;
-  --background-colour: rgba(239, 192, 80, 0.3);
+  --main-colour: #35a7ff;
+  /* --background-colour: rgba(239, 192, 80, 0.3); */
+  --background-colour: #fdf8ec;
   --dark-colour: #eaad1f;
   --light-colour: #f5d68f;
   --text-colour: #444;
@@ -173,6 +175,16 @@ form textarea:valid {
   background: #04aa6d; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
+
+dialog {
+  background: none;
+  border: none;
+}
+dialog::backdrop {
+  background-color: black;
+  opacity: 0.6;
+}
+
 @media only screen and (min-width: 1000px) {
   .main.container {
     margin: 2rem auto;

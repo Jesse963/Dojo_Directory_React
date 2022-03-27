@@ -54,7 +54,11 @@ exports.generateScores = async (req, res) => {
     );
     const matchCount = matchArray.length;
     const missCount = school.tags.length - matchCount;
-    const score = 41.7 * Math.log(matchCount + 1);
+    // const score = 41.7 * Math.log(matchCount + 1);
+    const score =
+      (900 * Math.exp(-0.5 * (matchCount - 10))) /
+      (2 * Math.pow(1 + Math.exp(-0.5 * (matchCount - 10)), 2));
+
     // const score = Math.exp(matchCount) - 0.25 * Math.exp(missCount);
     // console.log(school.tags, matchCount, missCount, score);
 
@@ -65,7 +69,7 @@ exports.generateScores = async (req, res) => {
 
     const distancePercentage = 1 - distance / maxDistance;
 
-    const distanceFactor = 0.5 * Math.exp(distancePercentage);
+    const distanceFactor = 0.1 * Math.exp(distancePercentage) + 0.8;
     const finalScore = distanceFactor * score;
 
     console.log(school.tags, score);

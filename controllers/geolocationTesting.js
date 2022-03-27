@@ -1,5 +1,3 @@
-const Location = require("../models/australias");
-
 exports.retrieveLocations = async (req, res) => {
   let altered = [];
   let suburbs = await Location.find({});

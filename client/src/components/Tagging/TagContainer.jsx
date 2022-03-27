@@ -14,7 +14,8 @@ function TagContainer(props) {
     let tags = Array.from(document.querySelectorAll(".tag.button"));
     const tagsToSelect = tags.sort(() => 0.5 - Math.random()).slice(0, 10);
     tagsToSelect.forEach((element) => element.classList.add("selected"));
-    document.getElementById("tagContainerPostcode").value = 2137;
+    if (props.submissionMethod === "comparison")
+      document.getElementById("tagContainerPostcode").value = 2137;
   }, []);
 
   //----------- GET TAGS -------------
@@ -174,27 +175,27 @@ function TagContainer(props) {
   };
 
   return (
-    <div className="main container">
-      <div className="content wrapper">
-        <h2>What interests you?</h2>
-        <p className="description text">
-          Select some items from the list below and we'll find the perfect
-          school for you!
-        </p>
-        <div className="tags wrapper">
-          {tags.map((tag, i) => {
-            return <IndividualTag id={i} _id={tag._id} key={i} tag={tag.tag} />;
-          })}
-        </div>
-        <div className="tags footer">
-          {checkSlider()}
+    // <div className="main container">
+    <div className="content wrapper">
+      <h2>What interests you?</h2>
+      <p className="description text">
+        Select some items from the list below and we'll find the perfect school
+        for you!
+      </p>
+      <div className="tags wrapper">
+        {tags.map((tag, i) => {
+          return <IndividualTag id={i} _id={tag._id} key={i} tag={tag.tag} />;
+        })}
+      </div>
+      <div className="tags footer">
+        {checkSlider()}
 
-          <button onClick={() => submissionHandler()}>Submit</button>
-          <button onClick={() => resetTags()}>Reset</button>
-          <button onClick={() => (window.location.href = "/")}>Home</button>
-        </div>
+        <button onClick={() => submissionHandler()}>Submit</button>
+        <button onClick={() => resetTags()}>Reset</button>
+        <button onClick={() => (window.location.href = "/")}>Home</button>
       </div>
     </div>
+    // </div>
   );
 }
 
