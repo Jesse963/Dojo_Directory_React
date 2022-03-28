@@ -1,5 +1,6 @@
 import React, { useState, Component } from "react";
 import ReactDOM from "react-dom";
+import Footer from "../footer/footer";
 import NavBar from "../navbar/navbar";
 import TagContainer from "../Tagging/TagContainer";
 
@@ -40,6 +41,7 @@ function NewSchoolForm() {
       <React.Fragment>
         <NavBar />
         <TagContainer newSchoolData={formJSON} submissionMethod="newSchool" />
+        <Footer />
       </React.Fragment>,
       document.getElementById("root")
     );

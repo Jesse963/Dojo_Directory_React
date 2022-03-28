@@ -4,6 +4,7 @@ import IndividualTag from "./IndividualTag";
 import "./TagContainer.css";
 import Navbar from "../navbar/navbar";
 import SummaryCardContainer from "../summaryCardContainer/summaryCardContainer";
+import Footer from "../footer/footer";
 
 function TagContainer(props) {
   const [tags, setTags] = useState([]);
@@ -135,7 +136,7 @@ function TagContainer(props) {
             <React.Fragment>
               <Navbar />
               <SummaryCardContainer schools={comparison_result} />
-              <Navbar />
+              <Footer />
             </React.Fragment>,
             document.getElementById("root")
           );
@@ -144,7 +145,6 @@ function TagContainer(props) {
         return;
     }
   };
-
   const checkSlider = () => {
     if (props.submissionMethod === "comparison")
       return (
@@ -174,14 +174,21 @@ function TagContainer(props) {
       );
   };
 
+  const heading = () => {
+    if (props.submissionMethod === "comparison") return "What interests you?";
+    return "What does your school focus on?";
+  };
+
+  const description = () => {
+    if (props.submissionMethod === "comparison")
+      return "Select some items from the list below and we'll find the perfect school for you!";
+    return "Select some items from the list below to tell others what you do in your classes!";
+  };
+
   return (
-    // <div className="main container">
     <div className="content wrapper">
-      <h2>What interests you?</h2>
-      <p className="description text">
-        Select some items from the list below and we'll find the perfect school
-        for you!
-      </p>
+      <h2>{heading()}</h2>
+      <p className="description text">{description()}</p>
       <div className="tags wrapper">
         {tags.map((tag, i) => {
           return <IndividualTag id={i} _id={tag._id} key={i} tag={tag.tag} />;
@@ -195,7 +202,6 @@ function TagContainer(props) {
         <button onClick={() => (window.location.href = "/")}>Home</button>
       </div>
     </div>
-    // </div>
   );
 }
 

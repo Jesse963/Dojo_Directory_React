@@ -8,6 +8,7 @@ import StartPage from "./components/StartPage/StartPage";
 import TagContainer from "./components/Tagging/TagContainer";
 import NewSchoolForm from "./components/NewSchoolForm/NewSchoolForm";
 import SubmitReviewForm from "./components/SchoolPage/SchoolReviews/SubmitReview";
+import Footer from "./components/footer/footer";
 
 function listAllSchools(schools) {
   console.log(schools.schools);
@@ -28,7 +29,7 @@ function App() {
 
       <StartPage listAllSchools={listAllSchools} />
       <SubmitReviewForm />
-      <NavBar />
+      <Footer />
       {/* <SchoolPageRoot /> */}
       {/* <SummaryCardContainer schools={testDojos} /> */}
       {/* <TagContainer /> */}

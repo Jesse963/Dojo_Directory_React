@@ -13,8 +13,10 @@ html {
 #root {
   display: flex;
   flex-direction: column;
-  background-color: var(--background-colour);
+  background-color: blue;
+  background-image: url(background.svg);
   height: 100vh;
+  overflow-y: auto;
 }
 
 .main.container {
@@ -187,15 +189,14 @@ dialog::backdrop {
 
 @media only screen and (min-width: 1000px) {
   .main.container {
-    margin: 2rem auto;
-    border: 2px solid black;
+    border: 2px solid var(--main-colour);
     width: 150ch;
     min-height: 60%;
     height: 70%;
     justify-content: center;
     box-shadow: var(--shadow);
     padding: 1rem 5rem 0 5rem;
-    margin: auto auto;
+    margin: 20vh auto;
   }
 
   .main.container h4 {

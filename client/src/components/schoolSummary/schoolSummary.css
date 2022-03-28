@@ -4,16 +4,16 @@
   border-radius: 1.5rem;
   padding: 0 1rem;
   min-width: 80vw;
-  box-shadow: var(--shadow);
   transition: all 0.1s ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: center;
   scroll-snap-align: start;
+  box-shadow: var(--shadow);
 }
 #schoolSummaryRoot:hover,
 #schoolSummaryRoot:focus {
-  border-color: var(--dark-colour);
+  border-color: var(--main-colour);
   cursor: pointer;
 }
 

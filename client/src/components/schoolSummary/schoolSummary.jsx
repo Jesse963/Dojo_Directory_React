@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./schoolSummary.css";
 import SchoolPageRoot from "../SchoolPage/SchoolPageRoot";
 import NavBar from "../navbar/navbar";
+import Footer from "../footer/footer";
 
 function SchoolSummary(props) {
   const schoolClickHandler = () => {
@@ -11,6 +12,7 @@ function SchoolSummary(props) {
       <React.Fragment>
         <NavBar />
         <SchoolPageRoot dojo={props.dojo} history={props.history} />
+        <Footer />
       </React.Fragment>,
       document.querySelector("#root")
     );

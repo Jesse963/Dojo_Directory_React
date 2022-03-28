@@ -7,7 +7,7 @@ exports.postcodeToCoordinates = async (req, res) => {
     method: "GET",
     url: `https://digitalapi.auspost.com.au/locations/v2/points/postcode/${postcode}`,
     headers: {
-      "AUTH-KEY": "G99nm1cZrBQV37oCvVitv5rUQ5RrV4XX",
+      "AUTH-KEY": process.env.AUSPOST_API_KEY,
       //   "Content-Type": "application/json",
     },
   };
