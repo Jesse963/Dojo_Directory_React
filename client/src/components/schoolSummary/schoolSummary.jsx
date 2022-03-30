@@ -10,11 +10,9 @@ function SchoolSummary(props) {
     console.log(`${props.dojo.name} was clicked`);
     ReactDOM.render(
       <React.Fragment>
-        <NavBar />
         <SchoolPageRoot dojo={props.dojo} history={props.history} />
-        <Footer />
       </React.Fragment>,
-      document.querySelector("#root")
+      document.getElementById("mainContentContainer")
     );
   };
   const { dojo } = props;

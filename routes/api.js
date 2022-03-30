@@ -24,6 +24,11 @@ const {
 } = require("../controllers/geolocationTesting");
 const { test } = require("../controllers/testController");
 const { postcodeToCoordinates } = require("../controllers/locationController");
+const {
+  login,
+  logout,
+  retrieveLoggedInSchool,
+} = require("../controllers/loginController");
 
 //Dojo routes
 router.get("/getAll", retrieveAllDBEntries);
@@ -46,5 +51,10 @@ router.post("/postcodeToCoords", postcodeToCoordinates);
 
 //Test route
 router.post("/test", test);
+
+//Login routes
+router.post("/login", login);
+router.get("/logout", logout);
+router.get("/retrieveLoggedInSchool", retrieveLoggedInSchool);
 
 module.exports = router;

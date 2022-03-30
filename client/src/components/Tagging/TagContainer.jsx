@@ -134,11 +134,9 @@ function TagContainer(props) {
           console.log("rendering suggestions");
           ReactDOM.render(
             <React.Fragment>
-              <Navbar />
               <SummaryCardContainer schools={comparison_result} />
-              <Footer />
             </React.Fragment>,
-            document.getElementById("root")
+            document.getElementById("mainContentContainer")
           );
           // window.location.reload();
         }
@@ -186,7 +184,7 @@ function TagContainer(props) {
   };
 
   return (
-    <div className="content wrapper">
+    <div className="content wrapper tagging">
       <h2>{heading()}</h2>
       <p className="description text">{description()}</p>
       <div className="tags wrapper">

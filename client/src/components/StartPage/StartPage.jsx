@@ -28,22 +28,18 @@ function StartPage(props) {
   const renderTagsContainer = () => {
     ReactDOM.render(
       <React.Fragment>
-        <NavBar />
         <TagContainer submissionMethod="comparison" />
-        <Footer />
       </React.Fragment>,
-      document.getElementById("root")
+      document.getElementById("mainContentContainer")
     );
   };
 
   const renderNewSchoolPage = () => {
     ReactDOM.render(
       <React.Fragment>
-        <NavBar />
         <NewSchoolsForm />
-        <Footer />
       </React.Fragment>,
-      document.getElementById("root")
+      document.getElementById("mainContentContainer")
     );
   };
 

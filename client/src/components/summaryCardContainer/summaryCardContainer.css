@@ -7,6 +7,7 @@
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
+  min-height: 80%;
 }
 
 @media only screen and (min-width: 1000px) {

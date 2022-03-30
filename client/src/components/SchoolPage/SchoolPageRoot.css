@@ -30,7 +30,7 @@ h3 {
   font-size: 2.5rem;
 }
 
-.content.footer {
+#mainContent .content.footer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

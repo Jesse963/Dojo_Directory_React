@@ -39,11 +39,9 @@ function NewSchoolForm() {
     }
     ReactDOM.render(
       <React.Fragment>
-        <NavBar />
         <TagContainer newSchoolData={formJSON} submissionMethod="newSchool" />
-        <Footer />
       </React.Fragment>,
-      document.getElementById("root")
+      document.getElementById("mainContentContainer")
     );
   };
 

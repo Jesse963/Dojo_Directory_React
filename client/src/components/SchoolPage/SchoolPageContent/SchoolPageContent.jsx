@@ -10,11 +10,9 @@ function SchoolPageContent(props) {
   const backToSuggestionsHandler = () => {
     ReactDOM.render(
       <React.Fragment>
-        <NavBar />
         <SummaryCardContainer schools={props.history} />
-        <NavBar />
       </React.Fragment>,
-      document.getElementById("root")
+      document.getElementById("mainContentContainer")
     );
   };
 
