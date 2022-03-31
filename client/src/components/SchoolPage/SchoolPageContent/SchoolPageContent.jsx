@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ReviewContainer from "../SchoolReviews/ReviewContainer";
 import ReactDOM from "react-dom";
-import NavBar from "../../navbar/navbar";
 import SummaryCardContainer from "../../summaryCardContainer/summaryCardContainer";
+import EditSchoolForm from "./EditSchoolForm";
 
 function SchoolPageContent(props) {
   const [content, setContent] = useState("about");
@@ -16,15 +16,24 @@ function SchoolPageContent(props) {
     );
   };
 
-  const submitReviewButtonHandler = () => {
-    const modal = document.getElementById("reviewFormDialog");
+  const showModal = (id) => {
+    const modal = document.getElementById(id);
     console.log(modal);
     modal.showModal();
   };
 
-  const closeModal = () => {
-    const modal = document.getElementById("reviewFormDialog");
+  const closeModal = (id) => {
+    const modal = document.getElementById(id);
     modal.close();
+  };
+
+  const renderEditButtonIfLoggedIn = () => {
+    if (!props.loggedIn) return null;
+    return (
+      <a className="edit button" onClick={() => showModal("editContentDialog")}>
+        Edit
+      </a>
+    );
   };
 
   const contentSwitch = () => {
@@ -34,6 +43,7 @@ function SchoolPageContent(props) {
           <div className="final content">
             <h3>About Us</h3>
             <div className="about container">
+              {renderEditButtonIfLoggedIn()}
               <p id={"about"}>{dojo.description}</p>
               <div className="tags container">
                 <h4>School Focuses</h4>
@@ -47,6 +57,7 @@ function SchoolPageContent(props) {
       case "contact":
         return (
           <div className="final content">
+            {renderEditButtonIfLoggedIn()}
             <h3>Contact</h3>
             <a href={`tel:${dojo.phone}`}>{dojo.phone || "0000 000 000"}</a>
             <a href={`mailto:${dojo.email}`}>{dojo.email}</a>
@@ -56,6 +67,7 @@ function SchoolPageContent(props) {
       case "reviews":
         return (
           <div className="final content">
+            {renderEditButtonIfLoggedIn()}
             <h3>Reviews</h3>
             <ReviewContainer school_id={props.dojo._id} />
           </div>
@@ -84,14 +96,14 @@ function SchoolPageContent(props) {
         </button>
         <button
           onClick={() => {
-            submitReviewButtonHandler();
+            showModal("reviewFormDialog");
           }}
         >
           Submit a review
         </button>
       </div>
 
-      {/* Submit review form dialog */}
+      {/*  -----  REVIEW FORM DIALOG  -----  */}
       <dialog id="reviewFormDialog">
         <form
           id="reviewForm"
@@ -100,20 +112,20 @@ function SchoolPageContent(props) {
         >
           <h4>Submit a Review</h4>
           <label htmlFor="email">Email</label>
-          <input name="email" type="email" required="true" />
+          <input name="email" type="email" required />
           <label htmlFor="first_name">First Name</label>
-          <input name="first_name" type="text" required="true" />
+          <input name="first_name" type="text" required />
           <label htmlFor="last_name">Last Name</label>
-          <input name="last_name" type="text" required="true" />
+          <input name="last_name" type="text" required />
           <label htmlFor="review">Review</label>
-          <textarea name="review" required="true" />
+          <textarea name="review" required />
           <div className="controls">
             <button type="submit">Submit</button>
             <button
               type="cancel"
               onClick={(e) => {
                 e.preventDefault();
-                closeModal();
+                closeModal("reviewFormDialog");
               }}
             >
               Cancel
@@ -121,6 +133,8 @@ function SchoolPageContent(props) {
           </div>
         </form>
       </dialog>
+
+      {/* <EditSchoolForm closeModal={closeModal} dojo={props.dojo} /> */}
     </div>
   );
 }

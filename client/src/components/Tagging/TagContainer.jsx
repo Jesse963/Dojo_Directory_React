@@ -134,7 +134,7 @@ function TagContainer(props) {
           console.log("rendering suggestions");
           ReactDOM.render(
             <React.Fragment>
-              <SummaryCardContainer schools={comparison_result} />
+              <SummaryCardContainer schools={comparison_result} tags={tags} />
             </React.Fragment>,
             document.getElementById("mainContentContainer")
           );

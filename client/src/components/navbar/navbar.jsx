@@ -13,6 +13,7 @@ const loadTestData = async () => {
 // --------- LOGOUT --------- //
 const logout = async () => {
   await fetch("/api/logout");
+  window.location.href = "/";
   console.log("Logged out");
 };
 

@@ -18,7 +18,11 @@ function SchoolPageRoot(props) {
       <h2>{props.dojo.name || "Mushin Goju Ryu Karate Academy"}</h2>
       <div className="content container">
         <ImageGallery />
-        <SchoolPageContent dojo={props.dojo} history={props.history} />
+        <SchoolPageContent
+          dojo={props.dojo}
+          history={props.history}
+          loggedIn={props.loggedIn}
+        />
       </div>
       <div id="toTop">
         <a

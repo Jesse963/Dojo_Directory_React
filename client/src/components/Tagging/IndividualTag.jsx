@@ -10,7 +10,7 @@ function IndividualTag(props) {
   return (
     <button
       id={"tagButton" + props.id}
-      className="tag button"
+      className={`tag button ${props.tag}`}
       onClick={() => clickHandler()}
     >
       {props.tag}

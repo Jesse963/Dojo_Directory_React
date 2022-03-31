@@ -49,6 +49,16 @@ h3 {
   bottom: 6rem;
 }
 
+.final.content {
+  position: relative;
+}
+
+.edit.button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
 @media only screen and (min-width: 1000px) {
   .content.container {
     justify-content: space-evenly;
@@ -82,5 +92,9 @@ h3 {
   }
   #toTop {
     display: none;
+  }
+  .edit.button {
+    top: 3.5rem;
+    right: 3.5rem;
   }
 }

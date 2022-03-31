@@ -7,6 +7,7 @@ const {
   searchByName,
   checkEmailExists,
   populateTestData,
+  updateSchool,
 } = require("../controllers/dojosController");
 const {
   submitReview,
@@ -29,6 +30,7 @@ const {
   logout,
   retrieveLoggedInSchool,
 } = require("../controllers/loginController");
+const { emailResultsToUser } = require("../controllers/emailController");
 
 //Dojo routes
 router.get("/getAll", retrieveAllDBEntries);
@@ -36,6 +38,7 @@ router.get("/populateTestData", populateTestData);
 router.post("/addNewSchool", addNewSchool);
 router.post("/searchSchools", searchByName);
 router.post("/checkEmailExists", checkEmailExists);
+router.post("/updateSchool", updateSchool);
 
 //Review routes
 router.post("/submitReview", submitReview);
@@ -56,5 +59,8 @@ router.post("/test", test);
 router.post("/login", login);
 router.get("/logout", logout);
 router.get("/retrieveLoggedInSchool", retrieveLoggedInSchool);
+
+// Email Routes
+router.post("/emailResultsToUser", emailResultsToUser);
 
 module.exports = router;

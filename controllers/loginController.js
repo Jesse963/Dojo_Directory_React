@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const cookieName = "dd_loginToken";
+const cookieName = process.env.COOKIE_NAME;
 
 // ----------------  LOGIN  ---------------- //
 exports.login = async (req, res) => {
@@ -57,7 +57,9 @@ exports.retrieveLoggedInSchool = async (req, res) => {
     (currentCookies && !currentCookies.includes(cookieName))
   ) {
     console.log("not logged in");
-    return res.status(400).json({ error: "User is not logged in" });
+    return res
+      .status(400)
+      .json({ success: false, error: "User is not logged in" });
   }
 
   let token = currentCookies.split(cookieName + "=")[1].split(";")[0];
@@ -66,7 +68,7 @@ exports.retrieveLoggedInSchool = async (req, res) => {
     verifiedToken = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
   } catch (error) {
     console.log(error.message);
-    return res.status(400).json({ error: error.message });
+    return res.status(400).json({ success: false, error: error.message });
   }
 
   const school = await Dojo.findById(verifiedToken.id);
@@ -75,5 +77,5 @@ exports.retrieveLoggedInSchool = async (req, res) => {
   console.log(verifiedToken);
   //   const school_id = verifiedToken.id;
   console.log("rendering logged in school");
-  return res.json({ school });
+  return res.json({ success: true, school });
 };

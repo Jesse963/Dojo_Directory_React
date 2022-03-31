@@ -22,4 +22,14 @@
   .card.container div:nth-child(1) {
     margin-top: 2rem !important;
   }
+  #schoolSummaryToolbar {
+    background-color: white;
+    border: 1px solid var(--dark-colour);
+    padding: 1rem;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow);
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+  }
 }
