@@ -13,13 +13,32 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(async () => {
-    console.log("Use effect triggered in App.js");
     const response = await fetch("/api/retrieveLoggedInSchool");
     const { school, success } = await response.json();
-    if (!success) return null;
-    setSchool(school);
-    setLoggedIn(true);
+    // const message = await response.json();
+    // console.log("RES: ", message);
+    console.log("school: ", school);
+    if (success) {
+      setSchool(school);
+      setLoggedIn(true);
+    }
+    if (window.location.href.includes("/api/")) {
+      await verifyEmail();
+    }
   }, []);
+  //===================================================
+  const verifyEmail = async () => {
+    console.log("Verifying email address");
+    const apiToCall = window.location.href.split("/api/")[1];
+    const response = await fetch("/api/" + apiToCall);
+    const { school, success } = await response.json();
+    console.log(school);
+    if (success) {
+      setSchool(school);
+      setLoggedIn(true);
+    }
+    console.log("calling api");
+  };
 
   const renderLoggedInSchool = () => {
     ReactDOM.render(
@@ -40,7 +59,7 @@ function App() {
   };
 
   const checkLoggedIn = () => {
-    if (loggedIn)
+    if (loggedIn && school)
       return <EditSchoolForm school={school} setSchool={setSchool} />;
   };
   return (

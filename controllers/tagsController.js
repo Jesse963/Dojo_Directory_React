@@ -37,6 +37,7 @@ exports.generateScores = async (req, res) => {
   const { coordinates, maxDistance } = req.body;
   console.log(coordinates, maxDistance);
   let schools = await Dojo.find({
+    valid: true,
     location: {
       $near: {
         $geometry: {

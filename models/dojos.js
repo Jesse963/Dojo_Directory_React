@@ -16,10 +16,10 @@ let DojoSchema = new Schema(
     },
     street: {
       type: String,
-      unique: true,
     },
     postcode: {
       type: Number,
+      required: true,
     },
     state: {
       type: String,
@@ -39,6 +39,14 @@ let DojoSchema = new Schema(
     },
     description: {
       type: String,
+      default: "",
+    },
+    website: {
+      type: String,
+      default: "",
+    },
+    phone: {
+      type: Number,
       default: "",
     },
     password: {
@@ -62,6 +70,10 @@ let DojoSchema = new Schema(
     },
     bannerImage: {
       type: String,
+    },
+    valid: {
+      type: Boolean,
+      default: false,
     },
   },
   {

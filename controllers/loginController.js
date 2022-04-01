@@ -31,7 +31,10 @@ exports.login = async (req, res) => {
     return res
       .status(400)
       .json({ success: false, message: "Incorrect email or password" });
-  const token = jwt.sign({ id: school._id }, process.env.JWT_TOKEN_SECRET);
+  const token = jwt.sign(
+    { school_id: school._id, source: "login" },
+    process.env.JWT_TOKEN_SECRET
+  );
   console.log(token);
 
   const cookieOptions = {
@@ -51,6 +54,7 @@ exports.logout = async (req, res) => {
 
 // ----------------  RENDER LOGGED IN SCHOOL  ---------------- //
 exports.retrieveLoggedInSchool = async (req, res) => {
+  console.log("Starting retrieveLoggedInSchool");
   const currentCookies = req.headers.cookie;
   if (
     !currentCookies ||
@@ -64,18 +68,19 @@ exports.retrieveLoggedInSchool = async (req, res) => {
 
   let token = currentCookies.split(cookieName + "=")[1].split(";")[0];
   let verifiedToken;
+  let school_id;
   try {
     verifiedToken = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
+    console.log(verifiedToken);
+    school_id = verifiedToken.school_id;
   } catch (error) {
     console.log(error.message);
     return res.status(400).json({ success: false, error: error.message });
   }
-
-  const school = await Dojo.findById(verifiedToken.id);
+  console.log(school_id);
+  const school = await Dojo.findById(school_id);
   console.log(school);
-
-  console.log(verifiedToken);
   //   const school_id = verifiedToken.id;
-  console.log("rendering logged in school");
-  return res.json({ success: true, school });
+  console.log("Finished retrieveLoggedInSchool");
+  return res.status(200).json({ success: true, school: school });
 };

@@ -76,22 +76,24 @@ function TagContainer(props) {
           coordinates: [location.lon, location.lat],
         };
 
-        console.log(newSchoolData);
-
         const options = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newSchoolData),
         };
 
-        const response = await fetch("/api/addNewSchool", options);
-        const message = await response.json();
+        let response = await fetch("/api/addNewSchool", options);
+        let message = await response.json();
         if (response.status !== 200) {
-          console.error(message.result);
-        } else {
-          console.log("should be going home");
-          window.location.reload();
+          return console.error(message.result);
         }
+
+        console.log("About to send verification email");
+        options.body = JSON.stringify({ email: newSchoolData.email });
+        console.log(options);
+        response = await fetch("/api/sendVerificationEmail", options);
+        message = await response.json();
+        console.log(message);
         return;
 
       case "comparison":

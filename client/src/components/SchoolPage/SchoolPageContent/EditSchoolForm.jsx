@@ -4,6 +4,10 @@ import SchoolPageRoot from "../SchoolPageRoot";
 
 function EditSchoolForm(props) {
   const submitHandler = async () => {
+    const formValid = document
+      .getElementById("editContentForm")
+      .checkValidity();
+    if (!formValid) return console.log("Form not valid");
     console.log("submitting");
     const inputs = Array.from(
       document.querySelectorAll(
@@ -12,19 +16,19 @@ function EditSchoolForm(props) {
     );
     let update = {};
     inputs.map((input) => (update[input.name] = input.value));
-    console.log("update:", update);
 
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(update),
     };
+
     // return console.log(options);
     const response = await fetch("/api/updateSchool", options);
     const message = await response.json();
     if (!message.success)
       return window.alert("Unable to update school, " + message.error);
-    console.log("Successfully updated", message.school);
+    console.log("Successfully updated", message);
     props.setSchool(message.school);
     document.getElementById("editContentDialog").close();
 
@@ -35,30 +39,25 @@ function EditSchoolForm(props) {
       document.getElementById("mainContentContainer")
     );
   };
-
+  console.log(props.school);
   /*  -----  EDIT CONTENT DIALOG  -----  */
+  if (!props.school) return null;
   return (
     <dialog id="editContentDialog">
       <form id="editContentForm" method="POST" action={"/api/updateSchool?"}>
-        <h4>Edit your details</h4>
-        {/* <label htmlFor="email">Email</label>
-   <input name="email" type="email" required />
-   <label htmlFor="last_name">Last Name</label>
-   <input name="last_name" type="text" required />
-<label htmlFor="about">About Us</label> */}
+        <h4 id="editContentHeading">Edit your details</h4>
 
-        <label htmlFor="name">Name</label>
+        <label htmlFor="phone">Phone</label>
         <input
-          name="name"
-          type="text"
-          required
-          defaultValue={props.school.name}
+          name="phone"
+          type="tel"
+          defaultValue={props.school.phone || ""}
         />
-        <textarea
-          name="description"
-          required
-          defaultValue={props.school.description}
-        />
+        <label htmlFor="website">Website</label>
+        <input name="website" type="url" defaultValue={props.school.website} />
+
+        <label htmlFor="description">Description</label>
+        <textarea name="description" defaultValue={props.school.description} />
         <div className="controls">
           <button
             type="submit"

@@ -30,7 +30,11 @@ const {
   logout,
   retrieveLoggedInSchool,
 } = require("../controllers/loginController");
-const { emailResultsToUser } = require("../controllers/emailController");
+const {
+  emailResultsToUser,
+  sendVerificationEmail,
+  verifyEmail,
+} = require("../controllers/emailController");
 
 //Dojo routes
 router.get("/getAll", retrieveAllDBEntries);
@@ -62,5 +66,7 @@ router.get("/retrieveLoggedInSchool", retrieveLoggedInSchool);
 
 // Email Routes
 router.post("/emailResultsToUser", emailResultsToUser);
+router.post("/sendVerificationEmail", sendVerificationEmail);
+router.get("/verifyEmail", verifyEmail);
 
 module.exports = router;

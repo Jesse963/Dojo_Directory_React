@@ -55,12 +55,12 @@ exports.addNewSchool = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(400).json({
-      error: true,
-      message: "Error uploading new school to database - ",
-      error,
+      success: false,
+      message: "Error uploading new school to database - " + error.message,
     });
   }
-  return res.status(200); //finally
+  console.log("Successfully added new school");
+  return res.status(200).json({ success: true }); //finally
 
   //Send Verification email and return success message
   //Create JWT for email verification
@@ -140,6 +140,7 @@ exports.populateTestData = async (req, res) => {
         coordinates: locations[index],
       },
       tags: tags,
+      valid: true,
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium omnis quisquam distinctio quidem tempora consequuntur! Aspernatur exercitationem maiores voluptatem velit odio impedit corrupti, nam, officia fuga soluta in quaerat assumenda?\
       Officiis explicabo placeat voluptas repudiandae, rerum itaque dicta odit, et aperiam commodi tempora eaque. Excepturi accusamus molestiae dolorem assumenda. Aliquam corporis accusamus illum omnis iure, dignissimos harum odio est tempore.\
@@ -157,6 +158,7 @@ exports.populateTestData = async (req, res) => {
 };
 
 exports.updateSchool = async (req, res) => {
+  console.log("Started Update school");
   const update = req.body;
   const currentCookies = req.headers.cookie;
   if (
@@ -175,8 +177,11 @@ exports.updateSchool = async (req, res) => {
     console.log(error.message);
     return res.status(400).json({ error: error.message });
   }
-  const school_id = verifiedToken.id;
+  const school_id = verifiedToken.school_id;
+  console.log(school_id);
   await Dojo.findByIdAndUpdate(school_id, update);
   const school = await Dojo.findById(school_id);
+  console.log(school);
+  console.log("Finished Update school");
   return res.status(200).json({ success: true, school });
 };

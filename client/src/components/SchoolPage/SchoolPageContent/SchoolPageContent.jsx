@@ -47,9 +47,7 @@ function SchoolPageContent(props) {
               <p id={"about"}>{dojo.description}</p>
               <div className="tags container">
                 <h4>School Focuses</h4>
-                <p>{dojo.tags.join(", ")}</p>
-                <p>{dojo.tags.join(", ")}</p>
-                <p>{dojo.tags.join(", ")}</p>
+                <p>{dojo.tags.join(" -- ")}</p>
               </div>
             </div>
           </div>
@@ -59,9 +57,20 @@ function SchoolPageContent(props) {
           <div className="final content">
             {renderEditButtonIfLoggedIn()}
             <h3>Contact</h3>
-            <a href={`tel:${dojo.phone}`}>{dojo.phone || "0000 000 000"}</a>
-            <a href={`mailto:${dojo.email}`}>{dojo.email}</a>
-            <a>{dojo.address}</a>
+            <p>
+              Phone:{" "}
+              <a href={`tel:${dojo.phone}` || ""}>{dojo.phone || "N/A"}</a>
+            </p>
+            <p>
+              Email: <a href={`mailto:${dojo.email}`}>{dojo.email}</a>
+            </p>
+            <p>Address: {dojo.street}</p>
+            <p>
+              Website:{" "}
+              <a target="_blank" href={dojo.website}>
+                {dojo.website}
+              </a>
+            </p>
           </div>
         );
       case "reviews":
