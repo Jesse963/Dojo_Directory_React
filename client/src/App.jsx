@@ -9,41 +9,43 @@ import SchoolPageRoot from "./components/SchoolPage/SchoolPageRoot";
 import EditSchoolForm from "./components/SchoolPage/SchoolPageContent/EditSchoolForm";
 
 function App() {
-  const [school, setSchool] = useState();
+  const [loggedInschool, setLoggedInSchool] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(async () => {
     const response = await fetch("/api/retrieveLoggedInSchool");
     const { school, success } = await response.json();
-    // const message = await response.json();
-    // console.log("RES: ", message);
     console.log("school: ", school);
     if (success) {
-      setSchool(school);
+      setLoggedInSchool(school);
       setLoggedIn(true);
     }
     if (window.location.href.includes("/api/")) {
       await verifyEmail();
+      return renderLoggedInSchool();
     }
   }, []);
+
   //===================================================
   const verifyEmail = async () => {
     console.log("Verifying email address");
     const apiToCall = window.location.href.split("/api/")[1];
     const response = await fetch("/api/" + apiToCall);
     const { school, success } = await response.json();
-    console.log(school);
     if (success) {
-      setSchool(school);
       setLoggedIn(true);
+      console.log("Setting school to ", school);
+      setLoggedInSchool(school);
     }
-    console.log("calling api");
   };
 
+  //===================================================
   const renderLoggedInSchool = () => {
+    if (!loggedInschool) return null;
+    console.log("in render", loggedInschool);
     ReactDOM.render(
       <React.Fragment>
-        <SchoolPageRoot dojo={school} loggedIn={true} />
+        <SchoolPageRoot dojo={loggedInschool} loggedIn={true} />
       </React.Fragment>,
       document.getElementById("mainContentContainer")
     );
@@ -59,13 +61,18 @@ function App() {
   };
 
   const checkLoggedIn = () => {
-    if (loggedIn && school)
-      return <EditSchoolForm school={school} setSchool={setSchool} />;
+    if (loggedIn && loggedInschool)
+      return (
+        <EditSchoolForm
+          school={loggedInschool}
+          setLoggedInSchool={setLoggedInSchool}
+        />
+      );
   };
   return (
     <React.Fragment>
       <NavBar
-        loginToSchool={setSchool}
+        loginToSchool={setLoggedInSchool}
         setLoginStatus={setLoggedIn}
         renderLoggedInSchool={renderLoggedInSchool}
         renderStartPage={renderStartPage}

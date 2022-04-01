@@ -2,15 +2,27 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import IndividualTag from "./IndividualTag";
 import "./TagContainer.css";
-import Navbar from "../navbar/navbar";
 import SummaryCardContainer from "../summaryCardContainer/summaryCardContainer";
-import Footer from "../footer/footer";
+import StartPage from "../StartPage/StartPage";
+import CheckEmail from "../notifaction panels/CheckEmail";
 
 function TagContainer(props) {
   const [tags, setTags] = useState([]);
   useEffect(async () => {
     await getTags();
 
+    if (props.selected) {
+      props.selected.forEach((selection, i) => {
+        console.log(selection.replace(" ", "."));
+        const buttonToSelect = document.querySelector(
+          ".tag.button." + selection.replaceAll(" ", ".")
+        );
+        setTimeout(() => {
+          buttonToSelect.classList.add("selected");
+        }, 100 * i);
+      });
+      return console.log("selections exist");
+    }
     // Remove below code for prod. Randomly selects 10 tags and enters postcode for ease
     let tags = Array.from(document.querySelectorAll(".tag.button"));
     const tagsToSelect = tags.sort(() => 0.5 - Math.random()).slice(0, 10);
@@ -94,7 +106,12 @@ function TagContainer(props) {
         response = await fetch("/api/sendVerificationEmail", options);
         message = await response.json();
         console.log(message);
-        return;
+        return ReactDOM.render(
+          <React.Fragment>
+            <CheckEmail />
+          </React.Fragment>,
+          document.getElementById("mainContentContainer")
+        );
 
       case "comparison":
         console.log("in comparison");
@@ -136,7 +153,11 @@ function TagContainer(props) {
           console.log("rendering suggestions");
           ReactDOM.render(
             <React.Fragment>
-              <SummaryCardContainer schools={comparison_result} tags={tags} />
+              <SummaryCardContainer
+                schools={comparison_result}
+                tags={tagsArray}
+              />
+              {/* tags={tags} */}
             </React.Fragment>,
             document.getElementById("mainContentContainer")
           );

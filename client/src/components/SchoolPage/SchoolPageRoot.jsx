@@ -4,6 +4,8 @@ import ImageGallery from "./ImageGallery/ImageGallery";
 import SchoolPageContent from "./SchoolPageContent/SchoolPageContent";
 
 function SchoolPageRoot(props) {
+  console.log("props", props);
+
   const topScroll = () => {
     const elementToScroll = document.getElementById("mainContent");
     console.log(elementToScroll);
@@ -13,6 +15,7 @@ function SchoolPageRoot(props) {
     });
   };
 
+  if (!props.dojo) return null;
   return (
     <div className="main container" id="test">
       <h2>{props.dojo.name || "Mushin Goju Ryu Karate Academy"}</h2>

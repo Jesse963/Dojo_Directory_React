@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import SchoolSummary from "../schoolSummary/schoolSummary";
+import TagContainer from "../Tagging/TagContainer";
 import "./summaryCardContainer.css";
 
 function SummaryCardContainer(props) {
@@ -14,6 +16,16 @@ function SummaryCardContainer(props) {
     };
 
     const response = await fetch("/api/emailResultsToUser", options);
+  };
+
+  const backHandler = () => {
+    console.log("backing");
+    ReactDOM.render(
+      <React.Fragment>
+        <TagContainer submissionMethod="comparison" selected={props.tags} />
+      </React.Fragment>,
+      document.getElementById("mainContentContainer")
+    );
   };
 
   return (
@@ -39,7 +51,7 @@ function SummaryCardContainer(props) {
         >
           Email my Results
         </button>
-        <button>Back</button>
+        <button onClick={() => backHandler()}>Back</button>
       </div>
 
       {/* Email form */}
