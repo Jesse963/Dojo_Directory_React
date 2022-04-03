@@ -29,7 +29,7 @@ function EditSchoolForm(props) {
     if (!message.success)
       return window.alert("Unable to update school, " + message.error);
     console.log("Successfully updated", message);
-    props.setSchool(message.school);
+    props.setLoggedInSchool(message.school);
     document.getElementById("editContentDialog").close();
 
     ReactDOM.render(

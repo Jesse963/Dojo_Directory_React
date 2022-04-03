@@ -5,6 +5,7 @@ import "./TagContainer.css";
 import SummaryCardContainer from "../summaryCardContainer/summaryCardContainer";
 import StartPage from "../StartPage/StartPage";
 import CheckEmail from "../notifaction panels/CheckEmail";
+import NoSchoolsFound from "../notifaction panels/NoSchoolsFound";
 
 function TagContainer(props) {
   const [tags, setTags] = useState([]);
@@ -147,22 +148,27 @@ function TagContainer(props) {
         );
 
         const comparison_result = await response_comparison.json();
-        if (response_comparison.status !== 200) {
-          console.log(comparison_result);
-        } else {
-          console.log("rendering suggestions");
-          ReactDOM.render(
+        if (response_comparison.status !== 200)
+          return console.log(comparison_result);
+        console.log("rendering suggestions");
+        if (comparison_result.length === 0 || !comparison_result)
+          return ReactDOM.render(
             <React.Fragment>
-              <SummaryCardContainer
-                schools={comparison_result}
-                tags={tagsArray}
-              />
-              {/* tags={tags} */}
+              <NoSchoolsFound />
             </React.Fragment>,
             document.getElementById("mainContentContainer")
           );
-          // window.location.reload();
-        }
+        ReactDOM.render(
+          <React.Fragment>
+            <SummaryCardContainer
+              schools={comparison_result}
+              tags={tagsArray}
+            />
+            {/* tags={tags} */}
+          </React.Fragment>,
+          document.getElementById("mainContentContainer")
+        );
+        // window.location.reload();
         return;
     }
   };
