@@ -1,5 +1,18 @@
 #imageGalleryRoot {
   border: 2px solid red;
+  display: grid;
+  overflow-y: auto;
+  overflow-x: hidden;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  max-height: 42vh;
+}
+#singleImageContainer {
+  width: 100%;
+}
+#singleImageContainer img {
+  width: 100%;
+  object-fit: contain;
 }
 
 @media only screen and (min-width: 1000px) {
