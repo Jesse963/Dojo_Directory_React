@@ -1,10 +1,13 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import "./SingleImageContainer.css";
+import "./ImageGallery.css";
 
-class SingleImageContainer extends React.Component {
-  render() {
-    return <div id="singleImageContainer"></div>;
-  }
+function SingleImageContainer(props) {
+  return (
+    <div id="singleImageContainer">
+      <img src={props.url} alt="" srcset="" />
+    </div>
+  );
 }
 
 export default SingleImageContainer;
