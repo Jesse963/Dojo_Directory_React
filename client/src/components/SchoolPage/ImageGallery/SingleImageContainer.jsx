@@ -4,9 +4,15 @@ import "./ImageGallery.css";
 
 function SingleImageContainer(props) {
   return (
-    <div id="singleImageContainer">
+    <li
+      id="singleImageContainer"
+      onClick={() => {
+        console.log(props.index);
+        props.imageClickHandler(props.index);
+      }}
+    >
       <img src={props.url} alt="" srcset="" />
-    </div>
+    </li>
   );
 }
 

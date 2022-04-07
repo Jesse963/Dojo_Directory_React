@@ -73,10 +73,10 @@ h3 {
     max-height: none;
   }
   #mainContent,
-  #imageGalleryRoot {
+  .image.container {
     width: 50%;
   }
-  #imageGalleryRoot {
+  .image.container {
     height: 75%;
     margin-top: 5.5rem;
   }

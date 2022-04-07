@@ -10,7 +10,8 @@ const Footer = () => {
           <a href="/">Add your school</a>
           <a href="/">Terms and Conditions</a>
           <a href="/">Contact</a>
-          <a href="/">test link</a>
+          <a href="/">Report a bug</a>
+          <a href="/">Suggest a feature</a>
         </div>
         <p>Copyright Jesse Jenkins - 2022</p>
       </div>

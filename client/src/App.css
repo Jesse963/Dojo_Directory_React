@@ -46,7 +46,9 @@ a {
 a:hover {
   color: var(--dark-colour);
 }
-
+li {
+  list-style: none;
+}
 /* Base Buttons */
 button {
   font-size: 1.2rem;
